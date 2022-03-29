@@ -1,0 +1,815 @@
+@import 'color';
+@media all and (min-width: 0)
+{
+	// Banner
+	.banner{
+		ul.slide{
+			list-style: none;
+			li{
+				.box{
+					position: absolute;
+					top: 22px;
+					left: 22px;
+					width: calc(100% - 44px);
+					background-image: url(../image/banner/bg.png);
+					background-size: 100% auto;
+					background-repeat: no-repeat;
+					padding: 20px 0 20px 0;
+					h2{
+						font-size: 20px;
+						line-height: 28px;
+						font-weight: normal;
+						text-align: center;
+						font-family: "SVN-Aptima";
+					}
+					h3{
+						font-family: "Open Sans";
+						font-weight: normal;
+						font-size: 14px;
+						line-height: 23px;
+						color: #595959;
+						text-align: center;
+						padding: 15px 0 12px 0;
+					}
+					ul.thumbs-pro{
+						display: none;
+					}
+					p{
+						&.more{
+							background: rgba(238, 107, 1, 0.7);
+							backdrop-filter: blur(5px);
+							width: 154px;
+							height: 42px;
+							display: block;
+							margin: auto;
+							font-size: 14px;
+							line-height: 42px;
+							text-align: center;
+							a{
+								text-transform: uppercase;
+								text-decoration: none;
+								color: $trang;
+							}
+						}
+					}
+				}
+			}
+			.owl-dots{
+				position: absolute;
+				bottom: 10px;
+				width: 100%;
+				.owl-dot{
+					&.active{
+						span{
+							background: $trang;
+						}
+					}
+					span{
+						width: 7px;
+						height: 7px;
+						background: transparent;
+						border: 1px solid $trang;
+						margin: 0 4px;
+					}
+				}
+			}
+		}
+		// Sản phẩm đại diện
+		ul.thumbs-pro{
+			padding: 15px 22px 0 22px;
+			display: flex;
+			justify-content: space-between;
+			list-style: none;
+			li{
+				width: calc(25% - 10px);
+				img{
+					width: 100%;
+					height: auto;
+					display: block;
+				}
+				&:last-child{
+					position: relative;
+					.more{
+						position: absolute;
+						top: 0;
+						width: 100%;
+						height: 100%;
+						text-align: center;
+						z-index: 2;
+						font-size: 12px;
+						line-height: 18px;
+						font-family: "Open Sans";
+						p{
+							display: flex;
+							width: 100%;
+							height: 100%;
+							align-items: center;
+							justify-content: center;
+							a{
+								text-decoration: none;
+								color: $trang;
+							}
+						}
+					}
+					&:after{
+						background: rgba(0, 0, 0, 0.48);
+						content: "";
+						display: block;
+						position: absolute;
+						top: 0;
+						width: 100%;
+						height: 100%;
+						z-index: 1;
+					}
+				}
+			}
+		}
+	}
+	// Giới thiệu
+	.gioi-thieu{
+		padding: 35px 22px 0 22px;
+		.mobile{
+			display: block;
+		}
+		.desktop{
+			display: none;
+		}
+		h2{
+			font-size: 20px;
+			line-height: 28px;
+			color: $dong;
+			text-align: center;
+			text-transform: uppercase;
+		}
+		p.intro{
+			font-size: 14px;
+			line-height: 23px;
+			font-family: "Open Sans";
+			text-align: justify;
+			padding: 13px 0;
+		}
+		ul{
+			list-style: none;
+			.owl-dots{
+				position: absolute;
+				bottom: 10px;
+				width: 100%;
+				.owl-dot{
+					&.active{
+						span{
+							background: $trang;
+						}
+					}
+					span{
+						width: 7px;
+						height: 7px;
+						background: transparent;
+						border: 1px solid $trang;
+						margin: 0 4px;
+					}
+				}
+			}
+		}
+	}
+	// Ưu điểm
+	.uu-diem{
+		padding: 15px 0 30px 0;
+		h2{
+			font-size: 20px;
+			line-height: 28px;
+			color: $dong;
+			text-align: center;
+			text-transform: uppercase;
+		}
+		p.intro{
+			font-size: 14px;
+			line-height: 23px;
+			font-family: "Open Sans";
+			text-align: center;
+			padding: 10px 0 20px 0;
+		}
+		ul{
+			list-style: none;
+			li{
+				margin-bottom: 20px;
+				h3{
+					color: #EE6B01;
+					text-transform: uppercase;
+					display: flex;
+					align-items: center;
+					width: 100%;
+					padding: 0 22px 10px 22px;
+					font-family: "Open Sans";
+					img{
+						margin-right: 15px;
+					}
+					span{
+						font-size: 14px;
+						text-transform: uppercase;
+					}
+				}
+				p{
+					font-size: 14px;
+					line-height: 23px;
+					font-family: "Open Sans";
+					text-align: justify;
+					padding: 0 22px;
+				}
+			}
+		}
+		img.nga{
+			display: block;
+			margin: auto;
+		}
+	}
+	// Dịch vụ
+	.dich-vu{
+		.mobile{
+			display: block;
+		}
+		.desktop{
+			display: none;
+		}
+		h2{
+			font-size: 20px;
+			line-height: 28px;
+			text-align: center;
+			text-transform: uppercase;
+			color: $dong;
+		}
+		p.intro{
+			font-size: 14px;
+			line-height: 23px;
+			text-align: center;
+			color: #595959;
+			font-family: "Open Sans";
+			padding: 11px 0 20px 0;
+		}
+		ul{
+			width: calc(100% - 44px);
+			margin: auto;
+			list-style: none;
+			padding: 0 0 30px 0;
+			li{
+				border: 1px solid #E5E5E5;
+				padding: 0 0 20px 0;
+				img{
+					width: calc(100% - 144px)!important;
+					margin: 23px auto;
+				}
+				h3{
+					font-family: "Open Sans";
+					font-size: 16px;
+					line-height: 23px;
+					text-align: center;
+					color: #EE6B01;
+				}
+			}
+			.owl-dots{
+				.owl-dot{
+					&.active{
+						span{
+							background: $den;
+						}
+					}
+					span{
+						width: 7px;
+						height: 7px;
+						background: transparent;
+						border: 1px solid $den;
+						margin: 0 4px;
+					}
+				}
+			}
+		}
+		img.nga{
+			display: block;
+			margin: auto;
+		}
+	}
+	// Sản phẩm
+	.san-pham{
+		padding: 30px 22px 0 22px;
+		h2{
+			font-size: 20px;
+			line-height: 28px;
+			text-align: center;
+			padding: 0 0 20px 0;
+			color: $dong;
+		}
+		ul{
+			list-style: none;
+			li{
+				display: flex;
+				justify-content: space-between;
+				div{
+					width: calc(50% - 3px);
+					border: 1px solid #E5E5E5;
+					padding: 11px 11px 20px 11px;
+					img{
+						display: block;
+						margin: auto;
+						&.nga{
+							width: 16px!important;
+							height: 7px!important;
+						}
+					}
+					h3{
+						font-family: "Open Sans";
+						font-size: 14px;
+						line-height: 23px;
+						text-align: center;
+						padding: 15px 0 10px 0;
+						a{
+							text-decoration: none;
+							color: #EE6B01;
+							text-transform: uppercase;
+						}
+					}
+					p{
+						font-family: "Open Sans";
+						font-size: 12px;
+						line-height: 18px;
+						text-align: center;
+						padding-bottom: 10px;
+					}
+				}
+			}
+			.owl-dots{
+				.owl-dot{
+					&.active{
+						span{
+							background: $den;
+						}
+					}
+					span{
+						width: 7px;
+						height: 7px;
+						background: transparent;
+						border: 1px solid $den;
+						margin: 0 4px;
+					}
+				}
+			}
+		}
+	}
+	// Công trình
+	.cong-trinh{
+		margin: 30px 0 0 0;
+		padding: 0 22px;
+		.mobile{
+			display: block;
+		}
+		.desktop{
+			display: none;
+		}
+		h2{
+			font-size: 20px;
+			line-height: 28px;
+			text-align: center;
+			color: $dong;
+		}
+		p.intro{
+			font-size: 14px;
+			line-height: 23px;
+			text-align: center;
+			color: #595959;
+			font-family: "Open Sans";
+			padding: 11px 0 20px 0;
+		}
+		ul{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			list-style: none;
+			li{
+				width: calc(50% - 2px);
+				img{
+					width: 100%;
+					height: auto;
+				}
+			}
+		}
+		p.more{
+			width: 169px;
+			height: 42px;
+			display: block;
+			margin: 10px auto;
+			border: 1px solid rgba(238, 107, 1, 0.7);
+			text-align: center;
+			line-height: 42px;
+			font-family: "Open Sans";
+			font-size: 14px;
+			a{
+				text-decoration: none;
+				color: rgba(238, 107, 1, 0.7);
+				text-transform: uppercase;
+			}
+		}
+	}
+	// Tin tức
+	.tin-tuc{
+		margin: 30px 0 0 0;
+		padding: 22px;
+		background: #F9F9F9;
+		h2{
+			font-size: 20px;
+			line-height: 28px;
+			text-align: center;
+			padding: 0 0 10px 0;
+			color: $dong;
+		}
+		ul{
+			list-style: none;
+			li{
+				display: flex;
+				width: 100%;
+				border-bottom: 1px solid #E7E7E7;
+				padding: 10px 0;
+				.left{
+					width: calc(100% - 90px);
+					h3{
+						font-weight: normal;
+						padding-right: 10px;
+						a{
+							font-size: 14px;
+							line-height: 23px;
+							text-decoration: none;
+							color: $den;
+						}
+					}
+					div.intro{
+						display: none;
+					}
+					p{
+						font-size: 13px;
+						color: #595959;
+						padding: 10px 0 0 0;
+					}
+				}
+				.right{
+					width: 90px;
+					img{
+						width: 100%;
+						height: auto;
+						display: block;
+					}
+				}
+			}
+		}
+		p.all{
+			text-align: right;
+			font-size: 14px;
+			padding: 20px 0 0 0;
+			a{
+				text-decoration: none;
+				color: rgba(238, 107, 1, 0.7);
+			}
+		}
+	}
+}
+@media all and (min-width: 520px)
+{
+	// Banner
+	.banner{
+		width: 480px;
+		margin: auto;
+		ul.thumbs-pro{
+			width: 480px;
+			margin: auto;
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+	// Giới thiệu
+	.gioi-thieu{
+		padding-left: 0;
+		padding-right: 0;
+		width: 480px;
+		margin: auto;
+	}
+	// Ưu điểm
+	.uu-diem{
+		width: 480px;
+		margin: auto;
+		ul{
+			li{
+				h3{
+					padding-left: 0;
+					padding-right: 0;
+				}
+				p{
+					padding-left: 0;
+					padding-right: 0;
+				}
+			}
+		}
+	}
+	// Dịch vụ
+	.dich-vu{
+		width: 480px;
+		margin: auto;
+		ul{
+			width: 100%;
+		}
+	}
+	// Sản phẩm
+	.san-pham{
+		width: 480px;
+		margin: auto;
+		padding-left: 0;
+		padding-right: 0;
+	}
+	// Công trình
+	.cong-trinh{
+		width: 480px;
+		margin: auto;
+		margin-top: 30px;
+		padding-left: 0;
+		padding-right: 0;
+	}
+	// Tin tức
+	.tin-tuc{
+		width: 480px;
+		margin: auto;
+	}
+}
+@media all and (min-width: 1200px)
+{
+	// Banner
+	.banner{
+		width: 1200px;
+		margin-top: 5px;
+		ul.slide{
+			z-index: 1;
+			li{
+				.box{
+					width: 548px;
+					height: 368px;
+					left: 50%;
+					top: 50%;
+					margin-left: -274px;
+					margin-top: -184px;
+					padding-top: 25px;
+					background-image: url(../image/banner/bg-desk.png);
+					h2{
+						font-size: 25px;
+						line-height: 36px;
+					}
+					h3{
+						padding-top: 10px;
+						padding-bottom: 20px;
+					}
+					p{
+						&.more{
+							width: 242px;
+							height: 47px;
+							line-height: 47px;
+							margin-bottom: 25px;
+						}
+					}
+					ul.thumbs-pro{
+						display: flex;
+						justify-content: space-between;
+					}
+					ul{
+						width: calc(100% - 34px);
+					}
+				}
+			}
+		}
+		ul.thumbs-pro{
+			display: none;
+			li{
+				&:last-child{
+					&:after{
+						background: rgba(0, 0, 0, 0.48);
+					}
+				}
+			}
+		}
+	}
+	// Giới thiệu
+	.gioi-thieu{
+		width: 1200px;
+		.mobile{
+			display: none;
+		}
+		.desktop{
+			display: block;
+		}
+		h2{
+			font-size: 25px;
+			padding-top: 15px;
+		}
+		p.intro{
+			text-align: center;
+			padding-left: 150px;
+			padding-right: 150px;
+		}
+		ul{
+			display: flex;
+			justify-content: space-between;
+			li{
+				width: 288px;
+				img{
+					width: 100%;
+					height: auto;
+					display: block;
+				}
+			}
+		}
+	}
+	// Ưu điểm
+	.uu-diem{
+		width: 1200px;
+		h2{
+			font-size: 25px;
+			padding-top: 35px;
+		}
+		p.intro{
+			br{
+				display: none;
+			}
+		}
+		ul{
+			display: flex;
+			justify-content: space-between;
+			li{
+				h3{
+					justify-content: center;
+				}
+				&.one{
+					width: 266px;
+				}
+				&.two{
+					width: 450px;
+				}
+			}
+		}
+	}
+	// Dịch vụ
+	.dich-vu{
+		width: 100%;
+		background-image: url(../image/bg-dich-vu.png);
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		background-position: center;
+		padding: 45px 0;
+		.mobile{
+			display: none;
+		}
+		.desktop{
+			display: block;
+		}
+		h2{
+			font-size: 25px;
+		}
+		p.intro{
+			br{
+				display: none;
+			}
+		}
+		ul{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			width: 925px;
+			li{
+				width: 210px;
+				border: none;
+				height: 300px;
+				margin: 0 20px;
+				img{
+					width: 100%!important;
+				}
+				h3{
+					font-weight: normal;
+					color: $den;
+				}
+			}
+		}
+	}
+	// Sản phẩm
+	.san-pham{
+		width: 1200px;
+		padding-top: 50px;
+		h2{
+			font-size: 25px;
+			padding-bottom: 30px;
+			br{
+				display: none;
+			}
+		}
+		ul{
+			li{
+				flex-direction: column;
+				background: #FFFFFF;
+				border: 1px solid #F4F4F4;
+				padding: 18px 18px 20px 18px;
+				h3{
+					font-size: 14px;
+					line-height: 23px;
+					text-align: center;
+					padding: 15px 0 5px 0;
+					a{
+						color: $cam;
+						text-decoration: none;text-transform: uppercase;
+					}
+				}
+				p{
+					font-size: 12px;
+					line-height: 18px;
+					text-align: center;
+					padding-bottom: 30px;
+				}
+				img.nga{
+					width: 20px!important;
+					margin: auto;
+				}
+			}
+		}
+	}
+	// Công trình
+	.cong-trinh{
+		width: 1200px;
+		margin: auto;
+		padding-top: 50px;
+		padding-bottom: 40px;
+		h2{
+			font-size: 25px;
+		}
+		ul{
+			li{
+				width: calc(33.33% - 15px);
+				margin-bottom: 20px;
+			}
+		}
+	}
+	// Tin tức
+	.tin-tuc{
+		width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+		padding-top: 50px;
+		padding-bottom: 50px;
+		background-color: #F9F9F9;
+		h2{
+			font-size: 25px;
+			padding-bottom: 40px;
+		}
+		ul{
+			width: 1200px;
+			margin: auto;
+			display: flex;
+			justify-content: space-between;
+			li{
+				width: 379px;
+				background-color: $trang;
+				flex-direction: column-reverse;
+				padding-top: 0;
+				padding-bottom: 20px;
+				border: none;
+				border-radius: 5px 5px 0 0;
+				justify-content: flex-end;
+				.left{
+					width: 100%;
+					padding-left: 28px;
+					padding-right: 28px;
+					h3{
+						font-weight: bold;
+						text-align: justify;
+						padding-top: 18px;
+						a{
+							font-size: 15px;
+							line-height: 22px;
+						}
+					}
+					div.intro{
+						display: block;
+						p{
+							text-align: justify;
+							padding-bottom: 15px;
+						}
+					}
+					p{
+						font-size: 14px;
+					}
+				}
+				.right{
+					width: 100%;
+					img{
+						border-radius: 5px 5px 0 0;
+					}
+				}
+			}
+		}
+		p.all{
+			width: 1200px;
+			margin: auto;
+			a{
+				text-transform: uppercase;
+			}
+		}
+	}
+}

@@ -1,0 +1,54 @@
+/* Extra small devices (phones, 340px and down) */
+@media only screen and (max-width: 340px) {
+    html {
+        font-size: 13px !important;
+    }
+    .promo-ct .promo-group .promo-item .bg-item {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 340px and up) */
+@media only screen and (min-width: 340px) {
+    html {
+        font-size: 14px !important;
+    }
+    .promo-ct .promo-group .promo-item .bg-item {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media only screen and (min-width: 370px) {
+    html {
+        font-size: 15px !important;
+    }
+
+    .contact-box h3 {
+        font-size: 0.9rem;
+    }
+}
+
+@media only screen and (min-width: 420px) {
+    html {
+        font-size: 18px !important;
+    }
+
+    .promo-ct .promo-group .promo-item .bg-item {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    html {
+        font-size: 22px !important;
+    }
+
+    .promo-ct .promo-group .promo-item .bg-item {
+        width: 100px;
+        height: 100px;
+    }
+}
+

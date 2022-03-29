@@ -1,0 +1,271 @@
+@import 'color';
+$thachanh:#e3cfb6;
+$vientrang:#908176;
+$vang-active:#fbc56b;
+$loadmore:#C2AA8E;
+@media all and (min-width: 0)
+{
+	body{
+		background-color: #FFF;
+	}
+	header{
+		box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+		backdrop-filter: blur(100px);
+	}
+	.banner{
+		display: none;
+	}
+	.danh-muc{
+		padding: 30px 0 0 0;
+		display: block;
+		ul{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			padding: 0 22px;
+			list-style: none;
+			li{
+				width: calc(50% - 8px);
+				border: 1px solid #F4984E;
+				height: 50px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-bottom: 18px;
+				font-size: 14px;	
+				a{
+					text-decoration: none;
+					text-transform: uppercase;
+					color: #F4984E;
+					font-weight: bold;
+				}
+				&.active{
+					background: rgba(238, 107, 1, 0.7);
+					a{
+						color: #FFFFFF;
+					}
+				}
+			}
+		}
+	}
+	.thong-tin{
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		align-items: center;
+		padding: 0 22px;
+		.so-luong{
+			order: 2;
+			p{
+				font-size: 14px;
+				line-height: 20px;
+				color: #EE6B01;
+				font-weight: bold;
+			}
+		}
+		.dac-tinh{
+			order: 1;
+			width: 100%;
+			font-size: 14px;
+			ul{
+				list-style: none;
+				display: flex;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				padding: 5px 0 10px 0;
+				li{
+					width: 33.33%;
+					display: flex;
+					align-items: center;
+					margin-bottom: 20px;
+					&:before{
+						content: "";
+						display: block;
+						width: 24px;
+						height: 24px;
+						background: #EDEDF0;
+						border-radius: 5px;
+						margin-right: 10px;
+					}
+				}
+			}
+		}
+		.sap-xep{
+			order: 3;
+			position: relative;
+			font-size: 14px;
+			p{
+				height: 39px;
+				background: #EDEDF0;
+				border-radius: 5px;
+				padding: 0 13px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				position: relative;
+				&:after {
+				    content: '\25bc';
+				    padding-left: 0.5em;
+				}
+			}
+			ul{
+				width: 100%;
+				position: absolute;
+				top: 40px;
+				right: 0;
+				list-style: none;
+				background-color: #F1f1f1;
+				border-radius: 5px;
+				overflow: hidden;
+				display: none;
+				li{
+					padding: 10px 13px;
+					border-bottom: 1px solid #CCC;
+					&:last-child{
+						border-bottom: none;
+					}
+				}
+			}
+		}
+	}
+	.san-pham{
+		width: 100%;
+		ul{
+			width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			padding: 20px 22px 0 22px;
+			li{
+				width: calc(50% - 2.5px);
+				list-style: none;
+				background-color: $trang;
+				margin: 0 0 10px 0;
+				padding: 11px;
+				border: 1px solid #E5E5E5;
+				img{
+					width: 100%;
+					height: auto;
+					display: block;
+					margin: auto;
+				}
+				h2{
+					padding: 15px 0 10px 0;
+					text-transform: uppercase;
+					font-size: 14px;
+					line-height: 23px;
+					a{
+						text-decoration: none;
+						color: $cam;
+					}
+				}
+				p{
+					color: $den;
+					font-size: 12px;
+					line-height: 18px;
+				}
+			}
+		}
+		.load-more{
+			display: flex;
+			justify-content:center;
+			padding: 10px 0 30px 0;
+			border-bottom: 1px solid rgba(72,72,72,.4);
+			span{
+				padding: 10px 30px;
+				background-color: $loadmore;
+				text-transform: uppercase;
+				cursor: pointer;
+				font-weight: bold;
+				border-radius: 5px;
+			}
+		}
+	}
+}
+@media all and (min-width: 520px)
+{
+	.danh-muc{
+		width: 480px;
+		margin: auto;
+		ul{
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+	.thong-tin{
+		width: 480px;
+		margin: auto;
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.san-pham{
+		width: 480px;
+		margin: auto;
+		ul{
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+	.product{
+		width: 480px;
+		margin: auto;
+		ul{
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+}
+@media all and (min-width: 1201px)
+{
+	.banner{
+		width: 1200px;
+		margin: auto;
+		padding: 10px 0 20px 0;
+		display: block;
+	}
+	.danh-muc{
+		display: none;
+	}
+	.thong-tin{
+		width: 1200px;
+		margin: auto;
+		.so-luong{
+			order: 1;
+		}
+		.dac-tinh{
+			width: auto;
+			order: 2;
+			ul{
+				align-items: center;
+				li{
+					width: auto;
+					margin-bottom: 0;
+					margin: 0 12px;
+				}
+			}
+		}
+		.sap-xep{
+			order: 3;
+		}
+	}
+	.san-pham{
+		width: 1200px;
+		padding: 20px 0 40px 0;
+		ul{
+			padding: 0;
+			width: 100%;
+			display: grid;
+		  	grid-template-columns: repeat(auto-fill, 230px);
+			li{
+				width: auto;
+				background-color: rgba(255,255,255, .053);
+				p{
+					display: block;
+				}
+			}
+		}
+		.load-more{
+			border-bottom: none;
+		}
+	}
+}

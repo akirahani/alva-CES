@@ -1,0 +1,106 @@
+@media all and (min-width: 0)
+{
+	section.du-an{
+		background-image: url(../image/du-an/bg-mobi.png);
+		background-size: 100% auto;
+		background-repeat: no-repeat;
+		background-position: top center;
+		h1{
+			text-shadow: 0px 7px 10px rgba(255, 202, 158, 0.7);
+			backdrop-filter: blur(5px);
+			font-size: 30px;
+			color: #EE6B01;
+			text-transform: uppercase;
+			text-align: center;
+			padding: 65px 0 40px 0;
+			font-family: "SVN-Aptima";
+		}
+		ul{
+			padding: 0 22px;
+			list-style: none;
+			li{
+				padding: 0 0 15px 0;
+				margin-bottom: 20px;
+				border-bottom: 1px solid #E7E7E7;
+				img{
+					width: 100%;
+				}
+				h2{
+					font-size: 15px;
+					line-height: 28px;
+				}
+				p{
+					font-size: 14px;
+				}
+				&:last-child{
+					border-bottom: none;
+				}
+			}
+		}
+	}
+	// Slide fotorama
+	#photobook{
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		display: none;
+		z-index: 999;
+		.close-slide{
+			width: 60px;
+			position: absolute;
+			top: 20px;
+			right: 20px;
+		}
+		.fotorama{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+			background-color: #000;
+		}
+	}
+}
+@media all and (min-width: 521px)
+{
+	section.du-an{
+		width: 480px;
+		margin: auto;
+		ul{
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+}
+@media all and (min-width: 1200px)
+{
+	section.du-an{
+		width: 100%;
+		background-image: url(../image/du-an/bg.png);
+		background-color: #f2f2f2;
+		h1{
+			padding: 70px 0;
+			font-size: 40px;
+			br{
+				display: none;
+			}
+		}
+		ul{
+			width: 1200px;
+			margin: auto;
+			padding-left: 0;
+			padding-right: 0;
+			display: grid;
+    		grid-template-columns: repeat(auto-fill, 370px);
+    		justify-content: space-between;
+    		li{
+    			width: auto;
+    			margin-bottom: 45px;
+    			padding-bottom: 0;
+    			border-bottom: none;
+    		}
+		}
+	}	
+}

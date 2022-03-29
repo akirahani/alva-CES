@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACA,6BACA,CACC,aAAa,CACZ,gBAAgB,CCCV,IAAI,CDAV,OAAO,CAAE,UAAU,EAGrB,kCACA,CACC,aAAa,CACZ,OAAO,CAAE,OAAO,CAChB,mBAAK,CACJ,KAAK,CAAE,KAAK,CACZ,MAAM,CAAE,IAAI",
+"sources": ["nhan-tu-van.scss","_color.scss"],
+"names": [],
+"file": "nhan-tu-van.css"
+}

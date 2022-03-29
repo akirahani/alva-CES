@@ -1,0 +1,18 @@
+@import 'color';
+@media all and (min-width: 0)
+{
+	section.thank{
+		background-color: $trang;
+		padding: 100px 20px;
+	}
+}
+@media all and (min-width: 1200px)
+{
+	section.thank{
+		padding: 200px 0;
+		.wrap{
+			width: 800px;
+			margin: auto;
+		}
+	}
+}

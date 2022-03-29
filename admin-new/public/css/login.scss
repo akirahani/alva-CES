@@ -1,0 +1,103 @@
+$main:#EA0913;
+$xanhla:#71BA51;
+$xanh:#083791;
+$camdat:#cc8e35;
+$camnhat:#ccae62;
+@media all and (min-width: 0)
+{
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		font-family: Arial;
+	}
+	.clear{
+		width: 100%;
+		clear: both;
+	}
+	.login-wrap {
+	    height: 540px;
+	    width: 90%;
+	    background: #f6f7fb;
+	    position: absolute;
+	    margin: -270px 0 0 -45%;
+	    left: 50%;
+	    top: 50%;
+	    border: 1px solid #ccc;
+	    .blog{
+	    	padding: 30px 0;
+	    	width: 80%;
+	    	margin: auto;
+	    	display: block;
+	    	img{
+	    		height: 70px;
+	    		width: auto;
+	    		display: block;
+	    		margin: auto;
+	    		padding-bottom: 20px;
+	    	}
+	    	h1{
+	    		font-size: 18px;
+	    		padding-bottom: 5px;
+	    		text-align: center;
+	    	}
+	    	p{
+	    		text-align: center;
+	    	}
+	    }
+	    form{
+	    	input{
+	    		width: calc(100% - 30px);
+	    		height: 37px;
+	    		outline: none;
+	    		margin-top: 20px;
+	    		font-family: Arial;
+	    		font-size: 15px;
+	    		padding: 0 15px;
+	    		border: 1px solid #CCC;
+	    		&.submit{
+	    			width: calc(60% - 10px);
+	    			border: none;
+	    			text-transform: uppercase;
+	    			color: #FFF;
+	    			border-radius: 5px;
+	    			cursor: pointer;
+	    			margin: auto;
+	    			display: block;
+	    			margin-top: 15px;
+	    		}
+	    		&.primary{
+	    			background-color: $camnhat;
+	    			&:hover{
+	    				background-color: $camdat;
+	    			}
+	    		}
+	    	}
+	    }
+	    p{
+    		&.center{
+    			text-align: center;
+    			padding-top: 30px;
+    			a{
+    				text-decoration: none;
+    				color: $main;
+    			}
+    		}
+    		&.login-mes{
+	    		text-align: center;
+	    		color: #F00;
+	    		padding: 40px 0 0 0;
+	    		text-transform: uppercase;
+	    	}
+    	}
+	}
+}
+@media all and (min-width: 996px)
+{
+	.login-wrap {
+	    height: 440px;
+	    width: 360px;
+	    margin: -220px 0 0 -180px;
+	}
+}

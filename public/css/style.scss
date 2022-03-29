@@ -1,0 +1,536 @@
+@import 'clear';
+@import 'color';
+@import 'font';
+@import 'owl';
+@media all and (min-width: 0)
+{
+    // Header
+    header{
+        background-image: url(../image/bg-header.png);
+        background-size: 100% auto;
+        background-repeat: repeat-y;
+        background-position: top center;
+        padding: 10px 0;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .top{
+            display: none;
+        }
+        .wrap{
+            .desktop{
+                display: none;
+            }
+        }
+        img{
+            &.logo{
+                width: 95px;
+                height: auto;
+                display: block;
+                margin: auto;
+            }
+            &.icon-menu{
+                position: absolute;
+                top: 30px;
+                right: 22px;
+                cursor: pointer;
+            }
+        }
+    }
+    // Menu
+    nav{
+        position: fixed;
+        width: 70%;
+        height: 100%;
+        top: 0;
+        right: -100%;
+        background-color: rgba(255, 255, 255, 1);
+        z-index: 99;
+        transition: all .5s;
+        &.active{
+            right: 0;
+        }
+        img.close-menu{
+            margin: 20px 0 10px 20px;
+            cursor: pointer;
+            height: 30px;
+        }
+        .form-search{
+            width: calc(100% - 40px);
+            margin: auto;
+            position: relative;
+            input[name="keyword"]{
+                width: 100%;
+                height: 45px;
+                outline: none;
+                border: none;
+                padding: 0 15px;
+                font-family: "Open Sans";
+                font-size: 15px;
+                background-color: #F2F2F2;
+            }
+            input[name="search"]{
+                width: 45px;
+                height: 45px;
+                position: absolute;
+                background-color: transparent;
+                background-image: url(../image/search-pro.svg);
+                background-position: center;
+                background-size: 50% auto;
+                background-repeat: no-repeat;
+                top: 0;
+                right: 0;
+                border: none;
+                outline: none;
+                cursor: pointer;
+            }
+        }
+        ul{
+            list-style: none;
+            width: 100%;
+            padding: 10px 0 0 0;
+            li{
+                padding: 10px 20px;
+                &.active{
+                    a{
+                        color: $cam;
+                    }
+                }
+                a{
+                    text-decoration: none;
+                    color: $den;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    // Footer
+    footer{
+        .wrap{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        // Logo bottom
+        .logobot{
+            display: none;
+        }
+        // Bản đồ
+        .ban-do{
+            display: none;
+        }
+        // Liên hệ
+        .lien-he{
+            padding: 30px 0 10px 20px;
+            order: 1;
+            h2{
+                font-size: 16px;
+                line-height: 22px;
+                color: #EE6B01;
+                padding: 0 0 10px 0;
+            }
+            ul{
+                list-style: none;
+                padding: 5px 0 0 0;
+                li{
+                    font-size: 14px;
+                    padding-bottom: 25px;
+                    b{
+                        font-weight: normal;
+                    }
+                    img{
+                        margin: 0 10px 0 0;
+                    }
+                }
+            }
+        }
+        // Menu bottom
+        .menubot{
+            padding: 0 22px;
+            order: 2;
+            h2{
+                font-size: 16px;
+                line-height: 22px;
+                color: #EE6B01;
+                padding: 0 0 10px 0;
+            }
+            ul{
+                list-style: none;
+                li{
+                    padding-bottom: 15px;
+                    a{
+                        font-family: "Open Sans";
+                        font-size: 14px;
+                        text-decoration: none;
+                        color: $den;                    
+                    }
+                }
+            }
+        }
+        // Copyright
+        p.copy{
+            color: #595959;
+            font-size: 14px;
+            padding: 10px 22px;
+            position: relative;
+            z-index: 2;
+            background: #F7F7F7;
+        }
+    } 
+	// Tổng đài
+	.tong-dai{
+        position: fixed;
+        bottom: 50px;
+        left: 10px;
+        width: 0;
+        height: 0;
+        z-index: 100;
+        .hotline-wrap{
+            position: relative;
+            width: 100px;
+            height: 100px;
+            z-index: 100;
+            cursor: pointer;
+        }
+        .hotline-one{
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            bottom: 80px;
+            left: 20px;
+            border: 1px solid red;
+            border-radius: 100%;
+            display: block;
+            z-index: 100;
+            animation-name: PhongTo;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes PhongTo { 
+            0% {
+                transform: scale(1.0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2.2);
+                opacity: 0;
+            }
+        }
+        .hotline-three{
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            bottom: 80px;
+            left: 20px;
+            background: red;
+            border-radius: 100%;
+            box-shadow: 0 0 5px #111;
+            z-index: 100;
+        }
+        .phone-icon{
+            width: 20px;
+            height: auto;
+            margin-top: 10px;
+            margin-left: 10px;
+            fill:#FFE3A1;
+            animation-name: LacLac;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes LacLac{
+            0%{
+                -ms-transform: rotate(20deg); /* IE 9 */
+                transform: rotate(20deg);
+            }
+            25%{
+                -ms-transform: rotate(-20deg); /* IE 9 */
+                transform: rotate(-20deg);
+            }
+            50%{
+                -ms-transform: rotate(20deg); /* IE 9 */
+                transform: rotate(20deg);
+            }
+            100%{
+                -ms-transform: rotate(-20deg); /* IE 9 */
+                transform: rotate(-20deg);
+            }
+        }
+    }
+}
+@media all and (min-width: 520px)
+{
+    header{
+        width: 480px;
+        margin: auto;
+    }
+    nav{
+        width: 480px;
+        &.active{
+            right: 50%;
+            margin-right: -240px;
+        }
+    }
+    footer{
+        width: 480px;
+        margin: auto;
+        // Liên hệ
+        .lien-he{
+            padding-left: 0;
+        }
+        .menubot{
+            padding-left: 0;
+            padding-right: 0;
+        }
+        p.copy{
+            width: 480px;
+            margin: auto;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}
+@media all and (min-width: 1200px)
+{
+    body{
+        background-color: #F6F7FB;
+    }
+    // Header
+    header{
+        width: 100%;
+        background-repeat: no-repeat;
+        background-color: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 0;
+        height: 183px;
+        .top{
+            display: flex;
+            background: #FFFFFF;
+            box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.05);
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 47px;
+            font-size: 12px;
+            .left{
+                display: flex;
+                align-items: center;
+                margin-right: 248px;
+                img{
+                    margin-right: 10px;
+                }
+            }
+            .right{
+                display: flex;
+                align-items: center;
+                p{
+                    height: 37px;
+                    padding: 0 17px;
+                    border-right:1px solid #DADADA;
+                    display: flex;
+                    align-items: center;
+                    &:last-child{
+                        border-right:none;
+                        padding-right: 0;
+                    }
+                    a{
+                        text-decoration: none;
+                        color: $den;
+                    }
+                }
+            }
+        }
+        .wrap{
+            width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            padding: 28px 0;
+            .desktop{
+                display: flex;
+                align-items: center;
+                form{
+                    width: 400px;
+                    height: 50px;
+                    margin-right: 125px;
+                    position: relative;
+                    input[type="text"]{
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50px;
+                        background: #FFFFFF;
+                        border: 1px solid #ECECEC;
+                        outline: none;
+                        padding: 0 24px;
+                        font-family: "Roboto";
+                        font-size: 14px;
+                        color: #5F5F5F;
+                    }
+                    input[type="submit"]{
+                        width: 50px;
+                        height: 50px;
+                        background-color: transparent;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        border: none;
+                        cursor: pointer;
+                        background-image: url(../image/search-pro.svg);
+                        background-position: center;
+                        background-repeat: no-repeat;
+                    }
+                }
+                .tu-van{
+                    display: flex;
+                    flex-wrap: wrap;
+                    img{
+                        margin-right: 10px;
+                    }
+                    p{
+                        display: flex;
+                        flex-wrap: wrap;
+                        span{
+                            width: 100%;
+                            font-weight: bold;
+                            &:first-child{
+                                color: #696969;
+                            }
+                            &:last-child{
+                                color: #EE6B01;
+                            }
+                        }
+                    }
+                }
+                p.social{
+                    display: flex;
+                    align-items: center;
+                    font-size: 14px;
+                    img{
+                        margin-left: 17px;
+                    }
+                }
+            }
+        }
+        img{
+            &.logo{
+                width: 103px;
+            }
+            &.icon-menu{
+                display: none;
+            }
+        }
+    }
+    // Navigation
+    .sticky-wrapper{
+        width: 2!important;
+    }
+    nav{
+        position: relative;
+        height: 47px;
+        right: inherit;
+        width: 100%;
+        background: #45372C;
+        top: inherit;
+        z-index: 3!important;
+        img.close-menu{
+            width: 0;
+            height: 0;
+            display: none;
+        }
+        .form-wrap{
+            width: 0;
+            height: 0;
+            display: none;
+        }
+        ul{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            width: 1200px;
+            margin: auto;
+            height: 100%;
+            li{
+                text-transform: uppercase;
+                padding: 0;
+                span{
+                    font-weight: bold;
+                    color: $cam;
+                }
+                a{
+                    font-size: 14px;
+                    line-height: 19px;
+                    color: #FFFFFF;
+                }
+            }
+        }
+    }
+    // Footer
+    footer{
+        width: 100%;
+        padding: 50px 0 0 0;
+        position: relative;
+        background-color: $trang;
+        box-shadow: 0px -2px 15px rgba(0, 0, 0, 0.04);
+        .wrap{
+            width: 1200px;
+            margin: auto;
+            justify-content: space-between;
+        }
+        .logobot{
+            width: 137px;
+            margin-right: 73px;
+            display: block;
+            order: 1;
+            img{
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+        }
+        .menubot{
+            width: 245px;
+            padding: 0;
+            background-image: none;
+            margin-right: 67px;
+            order: 2;
+            h2{
+                font-size: 16px;
+                color: $cam;
+            }
+        }
+        .lien-he{
+            width: 329px;
+            order: 3;
+            padding-top: 0;
+            margin-right: 56px;
+            h2{
+                text-align: left;
+                font-size: 16px;
+                color: $cam;
+            }
+            ul{
+                li{
+                    padding-bottom: 20px;
+                }
+            }
+        }
+        .ban-do{
+            display: block;
+            order: 4;
+            width: 284px;
+            img{
+                width: 100%;
+            }
+        }
+        p.copy{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            span{
+                width: 1200px;
+            }
+        }
+    }
+}

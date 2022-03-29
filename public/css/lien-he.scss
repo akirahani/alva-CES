@@ -1,0 +1,163 @@
+@import 'color';
+
+@media all and (min-width: 0)
+{
+	.contact{
+		.map{
+			padding: 10px 22px;
+			iframe{
+				height: 200px;
+				border-radius: 8px;
+			}
+		}
+		div.info{
+			padding: 25px 25px 20px 25px;
+			position: relative;
+			h2{
+				text-transform: uppercase;
+				font-size: 14px;
+				line-height: 19px;
+				padding-bottom: 10px;
+			}
+			p.address{
+				display: flex;
+				align-items:center;
+				font-size: 14px;
+				line-height: 40px;
+				a{
+					color: $den;
+					text-decoration: none;
+				}
+				img{
+					margin-right: 10px;
+				}
+			}
+			form{
+				padding: 30px 0 40px 0;
+				display: flex;
+				justify-content:center;
+				flex-direction: column;
+				border-top: 1px solid #F3F3F3;
+				.input{
+					width: 100%;
+					height: 48px;
+					outline: none;
+					background: #F8F8F8;
+					border: 1px solid #F2F2F2;
+					border: none;
+					margin: 0 0 20px 0;
+					font-family: "Open Sans";
+					font-size: 14px;
+					padding: 0 25px;
+					color: $den;
+					&::placeholder {
+					  	color: $den;
+					  	opacity: 1; /* Firefox */
+					}
+					&:-ms-input-placeholder { /* Internet Explorer 10-11 */
+					 color: $den;
+					}
+					&::-ms-input-placeholder { /* Microsoft Edge */
+					 color: $den;
+					}
+				}
+				textarea{
+					width: 100%;
+					outline: none;
+					border: none;
+					background: #F8F8F8;
+					border: 1px solid #F2F2F2;
+					font-family: "Open Sans";
+					font-size: 14px;
+					padding: 10px 25px;
+					border-radius: 5px;
+					color: $den;
+					&::placeholder {
+					  	color: $den;
+					  	opacity: 1; /* Firefox */
+					}
+					&:-ms-input-placeholder { /* Internet Explorer 10-11 */
+					 color: $den;
+					}
+					&::-ms-input-placeholder { /* Microsoft Edge */
+					 color: $den;
+					}
+				}
+				.submit{
+					width: 100%;
+					background: rgba(238, 107, 1, 0.7);
+					box-shadow: 0px 7px 10px rgba(255, 202, 158, 0.7);
+					backdrop-filter: blur(5px);
+					font-family: "Open Sans";
+					font-size: 20px;
+					border: none;
+					text-transform: uppercase;
+					margin: auto;
+					margin-top: 40px;
+					height: 60px;
+					color: $trang;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
+@media all and (min-width: 520px)
+{
+	.contact{
+		width: 480px;
+		margin: auto;
+		.map{
+			padding-left: 0;
+			padding-right: 0;
+		}
+		div.info{
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}	
+}
+@media all and (min-width: 1200px)
+{
+	.contact{
+		width: 1200px;
+		margin: auto;
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-between;
+		padding: 100px 0 200px 0;
+		.map{
+			width: calc(100% - 690px);
+			float: right;
+			iframe{
+				height: 600px;
+				border-radius: 0;
+			}
+		}
+		div.info{
+			width: 500px;
+			padding: 0;
+			h2{
+				font-size: 20px;
+				line-height: 28px;
+			}
+			form{
+				padding: 0;
+				border-bottom: none;
+				display: block;
+				input[type="text"], textarea{
+					background-color: #FFF;
+				}
+				.left{
+					float: left;
+				}
+				.right{
+					float: right;
+				}
+				textarea{
+					width: 100%;
+				}
+			}
+		}
+	}
+}
