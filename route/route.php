@@ -21,8 +21,8 @@
 		isset($arr_link[3]) ? $p = $arr_link[3] : $p = '';
 		isset($arr_link[4]) ? $one = $arr_link[4] : $one = '';
 	}
-	require_once "admin/model/Query.php";
-	require_once "admin/model/Lib.php";
+	require_once "admin-new/model/Query.php";
+	require_once "admin-new/model/Lib.php";
 	$query = new Query();
 	$lib = new Lib();
 	$data_company = $query->ChiTiet("company",[],["id" => "="], ["id" => 1]);
