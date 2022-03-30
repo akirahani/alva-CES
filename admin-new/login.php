@@ -32,6 +32,7 @@
 			<?php
 	          	if(isset($_POST['login']))
 	          	{
+	          		// var_dump(md5($_POST['password']));
 	          		header("Cache-Control: no cache");
 					@session_cache_limiter("private_no_expire");
 	 				$fields = [];
@@ -42,7 +43,7 @@
 	          		{
 	          			if(in_array($checkuser->nhom, $access))
 	          			{
-	          				if(md5($_POST['password']) == $checkuser->matkhau)
+	          				if(md5($_POST['password']) == $checkuser->password)
 		          			{
 	                        	$_SESSION['id']=$checkuser->id;
 	                        	$_SESSION['nhom']=$checkuser->nhom;

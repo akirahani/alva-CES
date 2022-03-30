@@ -6,13 +6,13 @@
     $condition = [];
     $forms = [];
     $search = [];
-    $data_list = $query->DanhSach("vungmien", $fields, $condition, $sorts, $limits, $forms, $search);
+    $data = $query->DanhSach("vungmien", $fields, $condition, $sorts, $limits, $forms, $search);
 ?>
 <div class="blog small">
 
 	<div class="bread">
 		<h1>Vùng miền <span>| danh sách</span></h1>
-		<div class="button"><button><a href="them-vung-mien">Thêm mới</a></button></div>
+		<div class="button"><button><a href="vung-mien/add">Thêm mới</a></button></div>
 		<div class="clear"></div>
 	</div>
 
@@ -21,21 +21,21 @@
             <tr>
                 <th>TT</th>
                 <th>Tên</th>
-                <th></th>
+                <th>Tác vụ</th>
             </tr>
         </thead>
         <tbody>
             <?php
             $thutu = 1;
-            foreach ($data_list as $key => $value) 
+            foreach ($data as $key => $val) 
             { 
                 ?>
-                <tr>
+                <tr id="remove<?=$val->id?>">
                     <td class="can-giua"><?=$thutu?></td>
-                    <td><?=$value->ten?></td>
+                    <td><p style="text-align: center"><?=$val->ten?></p></td>
                     <td class="can-giua">
-                        <a href="sua-vung-mien?id=<?=$value->id?>"><i class="fal fa-edit"></i></a>
-                        <a onClick="return confirm('Are you sure?')" href="xoa-vung-mien?id=<?=$value->id?>"><i class="fal fa-trash-alt"></i></a>
+                        <a href="vung-mien/edit?id=<?=$val->id?>"><i class="fal fa-edit"></i></a>
+                        <a data-id ="<?=$val->id?>" class="remove_vm" style="cursor: pointer;"><i class="fal fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <?php
@@ -45,3 +45,22 @@
         </tbody>
     </table>
 </div>
+<script>
+    $('.remove_vm').click(function(){
+        const cfrm = confirm('Bạn có chắc chắn muốn xóa ?');
+        var id = $(this).data('id');
+        if(cfrm ==true){
+            $.ajax({
+                url : "vung-mien/del",
+                method :"GET",
+                data:{
+                    id :id 
+                },
+                success:function(data){
+                    $('#remove'+id).remove();
+                }
+
+            })
+        }
+    });
+</script>

@@ -1,5 +1,5 @@
 <?php
-	if(isset($_POST['add']))
+	if(isset($_POST['insert']))
 	{
         $fields = ["ten", "slug"];
 		$post_form = [
@@ -7,7 +7,7 @@
 			"slug" => $_POST['slug']
 		];
 		$query->ThemMoi("vungmien", $fields, $post_form);
-        header("location:vung-mien");
+        header("location:list");
 	}
 ?>
 <div class="blog small">
@@ -25,6 +25,6 @@
 		<input type="text" name="slug" required spellcheck="false" autocomplete="off" class="input-text" />
 
 		<p class="tit-label"></p>
-		<input type="submit" name="add" value="Thêm mới" />
+		<input type="submit" name="insert" value="Thêm mới" />
 	</form>
 </div>

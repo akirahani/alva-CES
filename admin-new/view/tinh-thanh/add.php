@@ -1,6 +1,6 @@
 <?php
-	$data_vungmien = $query->DanhSach("vungmien", [], [], [], [], [], []);
-	if(isset($_POST['add']))
+	$data= $query->DanhSach("vungmien", [], [], [], [], [], []);
+	if(isset($_POST['insert']))
 	{
         $fields = ["ten", "vungmien"];
 		$post_form = [
@@ -8,7 +8,7 @@
 			"vungmien" => $_POST['vungmien']
 		];
 		$query->ThemMoi("tinhthanh", $fields, $post_form);
-        header("location:tinh-thanh");
+        header("location:list");
 	}
 ?>
 <div class="blog small">
@@ -26,14 +26,14 @@
 		<select name="vungmien">
 			<option value="0">Chọn</option>
 			<?php
-			foreach ($data_vungmien as $key => $value) 
+			foreach ($data as $key => $val) 
 			{
-				echo '<option value="'.$value->id.'">'.$value->ten.'</option>';
+				echo '<option value="'.$val->id.'">'.$val->ten.'</option>';
 			}
 			?>
 		</select>
 
 		<p class="tit-label"></p>
-		<input type="submit" name="add" value="Thêm mới" />
+		<input type="submit" name="insert" value="Thêm mới" />
 	</form>
 </div>

@@ -2,18 +2,18 @@
     // Xử lý vùng miền
     $data_vungmien = $query->DanhSach("vungmien", [], [], [], [], [], []);
     $arr_vungmien = [];
-    foreach ($data_vungmien as $key => $value) {
-        $arr_vungmien[$value->id] = $value->ten;
+    foreach ($data_vungmien as $key => $val) {
+        $arr_vungmien[$val->id] = $val->ten;
     }
     $arr_vungmien[0] = "Cập nhật";
 
-    $data_list = $query->DanhSach("tinhthanh", [], [], [], [], [], []);
+    $data = $query->DanhSach("tinhthanh", [], [], [], [], [], []);
 ?>
 <div class="blog small">
 
 	<div class="bread">
 		<h1>Tỉnh thành <span>| danh sách</span></h1>
-		<div class="button"><button><a href="them-tinh-thanh">Thêm mới</a></button></div>
+		<div class="button"><button><a href="tinh-thanh/add">Thêm mới</a></button></div>
 		<div class="clear"></div>
 	</div>
 
@@ -29,16 +29,16 @@
         <tbody>
             <?php
             $thutu = 1;
-            foreach ($data_list as $key => $value) 
+            foreach ($data as $key => $val) 
             { 
                 ?>
-                <tr>
+                <tr id="remove<?=$val->id?>">
                     <td class="can-giua"><?=$thutu?></td>
-                    <td class="can-giua"><?=$value->ten?></td>
-                    <td class="can-giua"><?=$arr_vungmien[$value->vungmien]?></td>
+                    <td class="can-giua"><?=$val->ten?></td>
+                    <td class="can-giua"><?=$arr_vungmien[$val->vungmien]?></td>
                     <td class="can-giua">
-                        <a href="sua-tinh-thanh?id=<?=$value->id?>"><i class="fal fa-edit"></i></a>
-                        <a onClick="return confirm('Are you sure?')" href="xoa-tinh-thanh?id=<?=$value->id?>"><i class="fal fa-trash-alt"></i></a>
+                        <a href="tinh-thanh/edit?id=<?=$val->id?>"><i class="fal fa-edit"></i></a>
+                        <a data-id ="<?=$val->id?>" style="cursor: pointer;" class="remove-tinhthanh"><i class="fal fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <?php
@@ -48,3 +48,22 @@
         </tbody>
     </table>
 </div>
+<script>
+    $('.remove-tinhthanh').click(function(){
+        const cfrm = confirm('Bạn có chắc chắn muốn xóa ?');
+        var id = $(this).data('id');
+        if(cfrm ==true){
+            $.ajax({
+                url : "tinh-thanh/del",
+                method :"GET",
+                data:{
+                    id :id 
+                },
+                success:function(data){
+                    $('#remove'+id).remove();
+                }
+
+            })
+        }
+    });
+</script>

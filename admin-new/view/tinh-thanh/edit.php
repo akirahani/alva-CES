@@ -1,12 +1,12 @@
 <?php
-	$data_vungmien = $query->DanhSach("vungmien", [], [], [], [], [], []);
+	$option_vungmien = $query->DanhSach("vungmien", [], [], [], [], [], []);
     isset($_GET['id']) ? $id = $_GET['id'] : $id = 0;
     #Detail
     $fields = [];
     $operator = ["id" => "="];
     $condition = ["id" => $id];
-    $data_detail = $query->ChiTiet("tinhthanh", $fields, $operator, $condition);
-	if(isset($_POST['edit']))
+    $data = $query->ChiTiet("tinhthanh", $fields, $operator, $condition);
+	if(isset($_POST['update']))
 	{
         $fields = ["ten", "vungmien"];
         $condition = ["id"];
@@ -16,7 +16,7 @@
             "id" => $id
         ];
         $query->CapNhat("tinhthanh", $fields, $condition, $post_form);
-        header("location:tinh-thanh");
+        header("location:list");
 	}
 ?>
 <div class="blog small">
@@ -28,15 +28,15 @@
 
 	<form method="post" enctype="multipart/form-data" class="form">
 		<p class="tit-label">Tên</p>
-		<input type="text" name="ten" required spellcheck="false" autocomplete="off" class="input-text" value="<?=$data_detail->ten?>" />
+		<input type="text" name="ten" required spellcheck="false" autocomplete="off" class="input-text" value="<?=$data->ten?>" />
 
 		<p class="tit-label">Vùng miền</p>
 		<select name="vungmien">
 			<option value="0">Chọn</option>
 			<?php
-			foreach ($data_vungmien as $key => $value) 
+			foreach ($option_vungmien as $key => $value) 
 			{
-				if($value->id == $data_detail->vungmien)
+				if($value->id == $data->vungmien)
 				{
 					echo '<option value="'.$value->id.'" selected>'.$value->ten.'</option>';
 				}
@@ -49,6 +49,6 @@
 		</select>
 
 		<p class="tit-label"></p>
-		<input type="submit" name="edit" value="Cập nhật" />
+		<input type="submit" name="update" value="Cập nhật" />
 	</form>
 </div>

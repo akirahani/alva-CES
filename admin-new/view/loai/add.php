@@ -1,24 +1,24 @@
 <?php
-	$data_danhmuc = $query->DanhSach("danhmuc", [], [], [], [], [], []);
+	$data = $query->DanhSach("danhmuc", [], [], [], [], [], []);
 
-	if(isset($_POST['add']))
+	if(isset($_POST['insert']))
 	{
 		if(!empty($_POST['danhmuc']))
 		{
-			$str_danhmuc = implode(",", $_POST['danhmuc']);
+			$str = implode(",", $_POST['danhmuc']);
 		}
 		else
 		{
-			$str_danhmuc = NULL;
+			$str = NULL;
 		}
         $fields = ["ten", "slug", "danhmuc"];
 		$post_form = [
 			"ten" => $_POST['ten'],
         	"slug" => $_POST['slug'],
-        	"danhmuc" => $str_danhmuc
+        	"danhmuc" => $str
 		];
 		$query->ThemMoi("loai", $fields, $post_form);
-        header("location:loai");
+        header("location:list");
 	}
 ?>
 <div class="blog small">
@@ -37,13 +37,13 @@
 
 		<p class="tit-label">Danh mục</p>
 		<?php
-		foreach ($data_danhmuc as $key => $value) 
+		foreach ($data as $key => $val) 
 		{
-			echo '<label><input type="checkbox" name="danhmuc[]" value="'.$value->id.'" /> '.$value->ten.'</label><br>';
+			echo '<label><input type="checkbox" name="danhmuc[]" val="'.$val->id.'" /> '.$val->ten.'</label><br>';
 		}
 		?>
 
 		<p class="tit-label"></p>
-		<input type="submit" name="add" class="submit" value="Thêm mới"/>
+		<input type="submit" name="insert" class="submit" val="Thêm mới"/>
 	</form>
 </div>

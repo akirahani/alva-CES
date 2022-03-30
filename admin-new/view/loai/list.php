@@ -20,7 +20,7 @@
 
 	<div class="bread">
 		<h1>Loại <span>| danh sách</span></h1>
-		<div class="button"><button><a href="them-loai">Thêm mới</a></button></div>
+		<div class="button"><button><a href="loai/add">Thêm mới</a></button></div>
 		<div class="clear"></div>
 	</div>
 
@@ -39,7 +39,7 @@
             foreach ($data_loai as $key => $value) 
             { 
                 ?>
-                <tr>
+                <tr id="remove<?=$value->id?>">
                     <td class="can-giua"><?=$thutu?></td>
                     <td><?=$value->ten?></td>
                     <td>
@@ -55,9 +55,9 @@
                         echo substr($txt_danhmuc, 0, -2);
                         ?>
                     </td>
-                    <td class="can-giua">
-                        <a href="cap-nhat-loai?id=<?=$value->id?>"><i class="fal fa-edit"></i></a>
-                        <a onClick="return confirm('Are you sure?')" href="xoa-loai?id=<?=$value->id?>"><i class="fal fa-trash-alt"></i></a>
+                <td class="can-giua">
+                        <a href="loai/edit?id=<?=$value->id?>"><i class="fal fa-edit"></i></a>
+                        <a data-id ="<?=$value->id?>" style="cursor: pointer;" class="remove_loai" ><i class="fal fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <?php
@@ -67,3 +67,22 @@
         </tbody>
     </table>
 </div>
+<script>
+    $('.remove_loai').click(function(){
+        const cfrm = confirm('Bạn có chắc chắn muốn xóa ?');
+        var id = $(this).data('id');
+        if(cfrm ==true){
+            $.ajax({
+                url : "loai/del",
+                method :"GET",
+                data:{
+                    id :id 
+                },
+                success:function(data){
+                    $('#remove'+id).remove();
+                }
+
+            })
+        }
+    });
+</script>

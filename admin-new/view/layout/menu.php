@@ -79,7 +79,7 @@
 		    <ul <?php if( in_array($p, ["vung-mien", "them-vung-mien", "sua-vung-mien", "tinh-thanh", "them-tinh-thanh", "sua-tinh-thanh", "dai-ly", "them-dai-ly", "sua-dai-ly"]) ) echo 'class="inner show" style="display:block"'; else echo 'class="inner"';?>>
 		    	<li <?php if(in_array($p, ["vung-mien", "them-vung-mien", "sua-vung-mien"])) echo 'class="active"';?>><a href="vung-mien">Vùng miền</a></li>
 		    	<li <?php if(in_array($p, ["tinh-thanh", "them-tinh-thanh", "sua-tinh-thanh"])) echo 'class="active"';?>><a href="tinh-thanh">Tỉnh thành</a></li>
-		    	<li <?php if(in_array($p, ["dai-ly", "them-dai-ly", "sua-dai-ly"])) echo 'class="active"';?>><a href="dai-ly/add">Đại lý</a></li>
+		    	<li <?php if(in_array($p, ["dai-ly", "them-dai-ly", "sua-dai-ly"])) echo 'class="active"';?>><a href="dai-ly">Đại lý</a></li>
 		    </ul>
 	  	</li>
 	  	

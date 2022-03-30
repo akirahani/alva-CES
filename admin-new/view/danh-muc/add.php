@@ -1,5 +1,5 @@
 <?php
-	if(isset($_POST['add']))
+	if(isset($_POST['insert']))
 	{
         $fields = ["ten", "slug"];
 		$post_form = [
@@ -21,7 +21,7 @@
             "id" => 1
         ];
         $query->CapNhat("company", $fields, $condition, $post_form);
-        header("location:danh-muc");
+        header("location:list");
 	}
 ?>
 <div class="blog small">
@@ -39,6 +39,6 @@
 		<input type="text" name="slug" required spellcheck="false" autocomplete="off" class="input-text" />
 
 		<p class="tit-label"></p>
-		<input type="submit" name="add" class="submit" value="Thêm mới"/>
+		<input type="submit" name="insert" class="submit" value="Thêm mới"/>
 	</form>
 </div>

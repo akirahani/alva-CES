@@ -1,5 +1,5 @@
 <?php
-	if(isset($_POST['add']))
+	if(isset($_POST['insert']))
 	{
         if(!empty($_FILES['album']['tmp_name'][0]))
         {
@@ -29,7 +29,7 @@
         	"album" => $save_album
 		];
 		$query->ThemMoi("daily", $fields, $post_form);
-        header("location:dai-ly");
+        header("location:list");
 	}
 	$data_tinhthanh = $query->DanhSach("tinhthanh", [], [], [], [], [], []);
 ?>
@@ -64,8 +64,13 @@
 			?>
 		</select>
 
-		<p class="tit-label">Album</p>
-		<input type="file" name="album[]" multiple /> 16 x 9 px
+		<p class="tit-label">Album</p>  16 x 9 px
+		<div class ="file" required  style="border: 2px dashed #0087F7; border-radius:5px;">
+            <img class="img-display">
+        </div>
+        <label for="file" class="btn btn-info mt-2" style="cursor: pointer;"> <i class="fas fa-upload"></i>Chọn ảnh
+            <input type='file' id="file" name="album[]"   accept="image/*"  class="mb-2" multiple hidden required/>
+        </label>
 
 		<p class="tit-label">Tên Không dấu</p>
 		<input type="text" name="slug" required spellcheck="false" autocomplete="off" class="input-text" />
@@ -77,6 +82,45 @@
 		<textarea class="ckeditor" name="gioithieu"></textarea>
 
 		<p class="tit-label"></p>
-		<input type="submit" name="add" value="Thêm mới" />
+		<input type="submit" name="insert" value="Thêm mới" />
 	</form>
 </div>
+  <script>
+	      // desktop
+	function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            $('#blah').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+      }
+	      $("#file").change(function() {
+	        readURL(this);
+	      });
+	      $(function() {
+	        // Multiple images preview in browser
+	        var imagesPreview = function(input, placeToInsertImagePreview) {
+
+	            if (input.files) {
+	                var filesAmount = input.files.length;
+
+	                for (i = 0; i < filesAmount; i++) {
+	                    var reader = new FileReader();
+
+	                    reader.onload = function(event) {
+	                        $($.parseHTML('<img  class="img-display" style=" width:10%; padding:10px">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+	                    }
+
+	                    reader.readAsDataURL(input.files[i]);
+	                }
+	            }
+
+	        };
+
+	        $('#file').change(function(){
+	            imagesPreview(this,'div.file');
+	        });
+	    });
+    </script>

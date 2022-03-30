@@ -6,7 +6,7 @@
     $condition = ["id" => $id];
     $data_loai = $query->ChiTiet("loai", $fields, $operator, $condition);
 	$data_danhmuc = $query->DanhSach("danhmuc", [], [], [], [], [], []);
-	if(isset($_POST['edit']))
+	if(isset($_POST['update']))
 	{
 		if(!empty($_POST['danhmuc']))
 		{
@@ -25,7 +25,7 @@
             "id" => $id
         ];
         $query->CapNhat("loai", $fields, $condition, $post_form);
-        header("location:loai");
+        header("location:list");
 	}
 ?>
 <div class="blog small">
@@ -46,20 +46,20 @@
 		<p class="tit-label">Danh mục</p>
 		<?php
 		$arr_danhmuc = explode(",", $data_loai->danhmuc);
-		foreach ($data_danhmuc as $key => $value) 
+		foreach ($data_danhmuc as $key => $val) 
 		{
-			if(in_array($value->id, $arr_danhmuc))
+			if(in_array($val->id, $arr_danhmuc))
 			{
-				echo '<label><input type="checkbox" name="danhmuc[]" value="'.$value->id.'" checked /> '.$value->ten.'</label><br>';
+				echo '<label><input type="checkbox" name="danhmuc[]" val="'.$val->id.'" checked /> '.$val->ten.'</label><br>';
 			}
 			else
 			{
-				echo '<label><input type="checkbox" name="danhmuc[]" value="'.$value->id.'" /> '.$value->ten.'</label><br>';
+				echo '<label><input type="checkbox" name="danhmuc[]" val="'.$val->id.'" /> '.$val->ten.'</label><br>';
 			}
 		}
 		?>
 
 		<p class="tit-label"></p>
-		<input type="submit" name="edit" class="submit" value="Cập nhật"/>
+		<input type="submit" name="update" class="submit" val="Cập nhật"/>
 	</form>
 </div>

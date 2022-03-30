@@ -6,7 +6,7 @@
     $condition = ["id" => $id];
     $data_detail = $query->ChiTiet("vungmien", $fields, $operator, $condition);
 
-	if(isset($_POST['edit']))
+	if(isset($_POST['update']))
 	{
         $fields = ["ten", "slug"];
         $condition = ["id"];
@@ -16,7 +16,7 @@
             "id" => $id
         ];
         $query->CapNhat("vungmien", $fields, $condition, $post_form);
-        header("location:vung-mien");
+        header("location:list");
 	}
 ?>
 <div class="blog small">
@@ -34,6 +34,6 @@
 		<input type="text" name="slug" required spellcheck="false" autocomplete="off" class="input-text" value="<?=$data_detail->slug?>" />
 
 		<p class="tit-label"></p>
-		<input type="submit" name="edit" value="Cập nhật" />
+		<input type="submit" name="update" value="Cập nhật" />
 	</form>
 </div>

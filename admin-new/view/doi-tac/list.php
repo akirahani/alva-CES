@@ -6,13 +6,13 @@
     $condition = [];
     $forms = [];
     $search = [];
-    $data_list = $query->DanhSach("doitac", $fields, $condition, $sorts, $limits, $forms, $search);
+    $data = $query->DanhSach("doitac", $fields, $condition, $sorts, $limits, $forms, $search);
 ?>
 <div class="blog medium">
 
 	<div class="bread">
 		<h1>Đối tác <span>| danh sách</span></h1>
-		<div class="button"><button><a href="them-doi-tac">Thêm mới</a></button></div>
+		<div class="button"><button><a href="doi-tac/add">Thêm mới</a></button></div>
 		<div class="clear"></div>
 	</div>
 
@@ -27,15 +27,15 @@
         <tbody>
             <?php
             $thutu = 1;
-            foreach ($data_list as $key => $value) 
+            foreach ($data as $key => $val) 
             { 
                 ?>
-                <tr>
+                <tr id="remove<?=$val->id?>">
                     <td class="can-giua"><?=$thutu?></td>
-                    <td><?=$value->ten?></td>
+                    <td><p style="text-align: center"><?=$val->ten?></p></td>
                     <td class="can-giua">
-                        <a href="sua-doi-tac?id=<?=$value->id?>"><i class="fal fa-edit"></i></a>
-                        <a onClick="return confirm('Are you sure?')" href="xoa-doi-tac?id=<?=$value->id?>"><i class="fal fa-trash-alt"></i></a>
+                        <a href="doi-tac/edit?id=<?=$val->id?>"><i class="fal fa-edit"></i></a>
+                        <a class="remove-doitac" data-id ="<?=$val->id?>" style="cursor: pointer;"><i class="fal fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <?php
@@ -45,3 +45,22 @@
         </tbody>
     </table>
 </div>
+<script>
+    $('.remove-doitac').click(function(){
+        const cfrm = confirm('Bạn có chắc chắn muốn xóa ?');
+        var id = $(this).data('id');
+        if(cfrm ==true){
+            $.ajax({
+                url : "doi-tac/del",
+                method :"GET",
+                data:{
+                    id :id 
+                },
+                success:function(data){
+                    $('#remove'+id).remove();
+                }
+
+            })
+        }
+    });
+</script>
