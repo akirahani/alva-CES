@@ -11,7 +11,7 @@
 	// $table_name = "trang";
     $data = $query->DanhSach('trang',[],[],[],[]);
 ?>
-<div class="row small">
+<div class="blog">
 
 	<div class="bread">
 		<h1>Trang <span>| danh sách</span></h1>
@@ -19,7 +19,7 @@
 		<div class="clear"></div>
 	</div>
 
-	<table class="display nowrap list-table" style="width:100%">
+	<table class="display nowrap list-table table" style="width:100%">
         <thead>
             <tr>
                 <th>TT</th>
