@@ -3,7 +3,7 @@
 	session_start();
 	require_once "model/Query.php";
 	$query = new Query();
-	$access = [1];
+	$access = [1,2];
 	$website = "Diện Phúc";
 ?>
 <!DOCTYPE html>
