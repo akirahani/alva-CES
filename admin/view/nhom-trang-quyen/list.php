@@ -1,11 +1,4 @@
-<?php
-    // require_once "model/Nhom.php";
-    // $nhom = new Nhom();
-    
-    $data_nhom = $query->DanhSach('nhom');
-    // $table_name = "";
-?>
-<div class="row medium">
+<div class="blog medium">
 
     <div class="bread">
         <h1>Phân quyền <span>| chọn nhóm người dùng</span></h1>

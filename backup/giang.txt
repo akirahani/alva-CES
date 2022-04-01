@@ -1,0 +1,2 @@
+ALTER TABLE `trang` CHANGE `permission` `trang` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+ALTER TABLE `phanquyen` CHANGE `trang` `trang` TEXT NULL DEFAULT NULL;

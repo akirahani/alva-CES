@@ -6,8 +6,8 @@
 	    if($_POST['nhom'] != 0)
 	    {
 	    	$idnhom = $_POST['nhom'];
-	    	$data_trang = $query->DanhSach('trang',['id','name'],[],[],[]);
-	    	$data_phanquyen = $query->DanhSach('phan_quyen',[],['nhom'=>'='],[],[],['nhom'=>$idnhom]);
+	    	$data_trang = $query->DanhSach('trang',['id', 'name', 'trang'],[],[],[]);
+	    	$data_phanquyen = $query->DanhSach('phanquyen',[],['nhom'=>'='],[],[],['nhom'=>$idnhom]);
 	    	$arr_trang = [];
 	    	foreach ($data_phanquyen as $keypq => $valuepq) 
 	    	{
@@ -38,26 +38,26 @@
 		            <td class="can-giua"><?=$value->id?></td>
 		            <td class="can-giua">
 		            <?php 
-		            	if(isset($arr_trang[$value->id][0]) && $arr_trang[$value->id][0] == 1 ) 
-		            		echo '<i class="fas fa-circle" trang="'.$value->id.'" nhom="'.$idnhom.'" trangthai="1" quyen="xem"></i>'; 
+		            	if(isset($arr_trang[$value->trang][0]) && $arr_trang[$value->trang][0] == 1 ) 
+		            		echo '<i class="fas fa-circle" trang="'.$value->trang.'" nhom="'.$idnhom.'" trangthai="1" quyen="xem"></i>'; 
 		            	else 
-		            		echo '<i class="far fa-circle" trang="'.$value->id.'" nhom="'.$idnhom.'" trangthai="0" quyen="xem"></i>';
+		            		echo '<i class="far fa-circle" trang="'.$value->trang.'" nhom="'.$idnhom.'" trangthai="0" quyen="xem"></i>';
 		            ?>
 		           	</td>
 		            <td class="can-giua">
 		            <?php 
-		            	if( isset($arr_trang[$value->id][1]) && $arr_trang[$value->id][1] == 1 ) 
-		            		echo '<i class="fas fa-circle" trang="'.$value->id.'" nhom="'.$idnhom.'" trangthai="1" quyen="sua"></i>'; 
+		            	if( isset($arr_trang[$value->trang][1]) && $arr_trang[$value->trang][1] == 1 ) 
+		            		echo '<i class="fas fa-circle" trang="'.$value->trang.'" nhom="'.$idnhom.'" trangthai="1" quyen="sua"></i>'; 
 		            	else 
-		            		echo '<i class="far fa-circle" trang="'.$value->id.'" nhom="'.$idnhom.'" trangthai="0" quyen="sua"></i>';
+		            		echo '<i class="far fa-circle" trang="'.$value->trang.'" nhom="'.$idnhom.'" trangthai="0" quyen="sua"></i>';
 		            ?>
 		            </td>
 		            <td class="can-giua">
 		            <?php 
-			            if( isset($arr_trang[$value->id][2]) && $arr_trang[$value->id][2] == 1 ) 
-			            	echo '<i class="fas fa-circle" trang="'.$value->id.'" nhom="'.$idnhom.'" trangthai="1" quyen="xoa"></i>'; 
+			            if( isset($arr_trang[$value->trang][2]) && $arr_trang[$value->trang][2] == 1 ) 
+			            	echo '<i class="fas fa-circle" trang="'.$value->trang.'" nhom="'.$idnhom.'" trangthai="1" quyen="xoa"></i>'; 
 			            else 
-			            	echo '<i class="far fa-circle" trang="'.$value->id.'" nhom="'.$idnhom.'" trangthai="0" quyen="xoa"></i>';
+			            	echo '<i class="far fa-circle" trang="'.$value->trang.'" nhom="'.$idnhom.'" trangthai="0" quyen="xoa"></i>';
 		        	?>
 		        	</td>
 		        </tr>

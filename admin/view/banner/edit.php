@@ -1,6 +1,7 @@
 <?php
+	if($arr_phanquyen->sua == 0){header("location:thong-bao");}
+
 	isset($_GET['id']) ? $id = $_GET['id'] : $id = 0;
-	
 	#Detail
     $fields = [];
     $operator = ["id" => "="];

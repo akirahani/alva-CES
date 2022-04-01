@@ -1,30 +1,31 @@
 <?php 
+	if($arr_phanquyen->sua == 0){header("location:thong-bao");}
 
-		if(isset($_POST['insert']))
+	if(isset($_POST['insert']))
+	{
+		if(!empty($_FILES['mobile']['name']))
 		{
-			if(!empty($_FILES['mobile']['name']))
-			{
-				$mobile = date('Y-m-d-H-i-s-').$_FILES['mobile']['name'];
-				move_uploaded_file($_FILES['mobile']['tmp_name'], '../uploads/banner/'.$mobile);
-			}
-			else
-			{
-				$mobile = NULL;
-			}
+			$mobile = date('Y-m-d-H-i-s-').$_FILES['mobile']['name'];
+			move_uploaded_file($_FILES['mobile']['tmp_name'], '../uploads/banner/'.$mobile);
+		}
+		else
+		{
+			$mobile = NULL;
+		}
 
-			if(!empty($_FILES['file']['name']))
-			{
-				$pic = date('Y-m-d-H-i-s-').$_FILES['file']['name'];
-				move_uploaded_file($_FILES['file']['tmp_name'], '../uploads/banner/'.$pic);
-			}
-			else
-			{
-				$pic = NULL;
-			}
-			
-	        $query->ThemMoi("banner", ["ten","link","thutu","mobile","desktop"],["ten"=>$_POST['ten'],"link"=>$_POST['link'],"thutu"=>$_POST['thutu'],"mobile"=>$mobile,"desktop"=>$pic]);
-			header("location:list");
-		} 
+		if(!empty($_FILES['file']['name']))
+		{
+			$pic = date('Y-m-d-H-i-s-').$_FILES['file']['name'];
+			move_uploaded_file($_FILES['file']['tmp_name'], '../uploads/banner/'.$pic);
+		}
+		else
+		{
+			$pic = NULL;
+		}
+		
+        $query->ThemMoi("banner", ["ten","link","thutu","mobile","desktop"],["ten"=>$_POST['ten'],"link"=>$_POST['link'],"thutu"=>$_POST['thutu'],"mobile"=>$mobile,"desktop"=>$pic]);
+		header("location:list");
+	} 
 
  ?>
 

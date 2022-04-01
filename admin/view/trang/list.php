@@ -1,14 +1,4 @@
 <?php
-    #Nhóm - Trang - Phân quyền
-    // require_once "model/PhanQuyen.php";
-    // $phanquyen = new PhanQuyen();
- //    $data_phanquyen = $phanquyen->NhomTrangQuyen($__NHOM__, 1);
- //    if( empty($data_phanquyen) || $data_phanquyen->xem == 0 ) header("location:./");
-
-	// require_once "model/Trang.php";
-	// $trang = new Trang();
-	// $data_trang = $trang->DanhSach();
-	// $table_name = "trang";
     $data = $query->DanhSach('trang',[],[],[],[]);
 ?>
 <div class="blog">
@@ -36,8 +26,7 @@
                 <tr>
                     <td style="text-align: center"><?=$key+1?></td>
                     <td><p style="text-align: center"><?=$value->name?></p></td>
-                    <td><p style="text-align: center"><?=$value->permission?></p></td>
-<!--                     <td><?=$value->permisstions?></td> -->
+                    <td><p style="text-align: center"><?=$value->trang?></p></td>
                     <td class="can-giua" style="text-align: center">
                         <a href="trang/edit?id=<?=$value->id?>"><i class="fal fa-edit"></i></a>
                         <a onClick="return confirm('Bạn muốn xóa?')" href="trang/del?id=<?=$value->id?>"><i class="fal fa-trash-alt"></i></a>

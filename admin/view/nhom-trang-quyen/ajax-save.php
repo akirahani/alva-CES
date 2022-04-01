@@ -1,91 +1,46 @@
 <?php 
 	require_once("../../model/Query.php");
 	$query = new Query();
-	// $phanquyen = $query->DanhSach('phan-quyen',[],[],[],[]);
-	// $data_check = [
-	// 	"nhom" => $_POST['nhom'],
-	// 	"trang" => $_POST['trang']
-	// ];
-	// $check = $query->DanhSach('phan-quyen',['nhom','trang'],[],[],[],$data_check);
-	// if($check > 0)
-	// {
-	// 	// Update
-	// 	$post_data=[
- //        	'nhom' => $_POST["nhom"],
- //        	'trang' => $_POST["trang"]
- //        ];
-	// 	if($_POST['quyen'] == "xem")
-	// 	{
-	// 		if($_POST['trangthai'] == 1)
-	// 		{
-	// 			$post_data["xem"] = 0;
-	// 		}
-	// 		else
-	// 		{
-	// 			$post_data["xem"] = 1;
-	// 		}
-	// 		$query->CapNhat('phan-quyen',[],[],$post_data);
-	// 	}
-	// 	if($_POST['quyen'] == "sua")
-	// 	{
-	// 		if($_POST['trangthai'] == 1)
-	// 		{
-	// 			$post_data["sua"] = 0;
-	// 		}
-	// 		else
-	// 		{
-	// 			$post_data["sua"] = 1;
-	// 		}
-	// 		$query->CapNhat('phan-quyen',[],[],$post_data);
-	// 	}
-	// 	if($_POST['quyen'] == "xoa")
-	// 	{
-	// 		if($_POST['trangthai'] == 1)
-	// 		{
-	// 			$post_data["xoa"] = 0;
-	// 		}
-	// 		else
-	// 		{
-	// 			$post_data["xoa"] = 1;
-	// 		}
-	// 		$query->CapNhat('phan-quyen',[],[],$post_data);
-	// 	}
-	// }
-	if(isset($_POST['nhom']) && isset($_POST['trang']) && isset($_POST['quyen']) && isset($_POST['trangthai']) )
+	$get_nhom = $_POST['nhom'];
+	$get_trang = $_POST['trang'];
+	$get_quyen = $_POST['quyen'];
+	$get_trangthai = $_POST['trangthai'];
+	$data_phanquyen = $query->ChiTiet("phanquyen", [], ["nhom"=>"=", "trang"=>"="], ["nhom"=>$get_nhom, "trang"=>$get_trang]);
+	if($get_trangthai == 0)
 	{
-
-		// Insert
-		if($_POST['quyen'] == "xem")
+		$save_trangthai = 1;
+	}
+	else
+	{
+		$save_trangthai = 0;
+	}
+	if(!empty($data_phanquyen))
+	{
+		if($get_quyen == "xem")
 		{
-			$post_data=[
-	        	'nhom' => $_POST["nhom"],
-	        	'trang' => $_POST["trang"],
-	        	'xem' => 1,
-	        	'sua' => 0,
-	        	'xoa' => 0
-	        ];
+			$query->CapNhat("phanquyen", ["xem"],["nhom", "trang"], ["xem"=> $save_trangthai, "nhom" => $get_nhom, "trang" => $get_trang]);
 		}
-		if($_POST['quyen'] == "sua")
+		else if($get_quyen == "sua")
 		{
-			$post_data=[
-	        	'nhom' => $_POST["nhom"],
-	        	'trang' => $_POST["trang"],
-	        	'xem' => 0,
-	        	'sua' => 1,
-	        	'xoa' => 0
-	        ];
+			$query->CapNhat("phanquyen", ["sua"],["nhom", "trang"], ["sua"=> $save_trangthai, "nhom" => $get_nhom, "trang" => $get_trang]);
 		}
-		if($_POST['quyen'] == "xoa")
+		else
 		{
-			$post_data=[
-	        	'nhom' => $_POST["nhom"],
-	        	'trang' => $_POST["trang"],
-	        	'xem' => 0,
-	        	'sua' => 0,
-	        	'xoa' => 1
-	        ];
+			$query->CapNhat("phanquyen", ["xoa"],["nhom", "trang"], ["xoa"=> $save_trangthai, "nhom" => $get_nhom, "trang" => $get_trang]);
 		}
-		var_dump($post_data);
-		$query->ThemMoi('phan-quyen',["nhom","trang","xem","sua","xoa"]	,$post_data);
+	}
+	else
+	{
+		if($get_quyen == "xem")
+		{
+			$query->ThemMoi("phanquyen", ["nhom","trang", "xem"], ["nhom" =>$get_nhom, "trang"=>$get_trang, "xem"=> $save_trangthai ]);
+		}
+		else if($get_quyen == "sua")
+		{
+			$query->ThemMoi("phanquyen", ["nhom","trang", "sua"], ["nhom" =>$get_nhom, "trang"=>$get_trang, "sua" => $save_trangthai ]);
+		}
+		else{
+			$query->ThemMoi("phanquyen", ["nhom","trang", "xoa"], ["nhom" =>$get_nhom, "trang"=>$get_trang, "xoa" => $save_trangthai ]);
+		}
 	}
  ?>

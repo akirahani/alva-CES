@@ -1,11 +1,6 @@
-<?php 
-	#Get list
-	// $fields = ["id", "ten", "mobile"];
-	// $sorts = ["id" => "DESC"];
-	// $limits = [];
-	// $condition = [];
-	// $forms = [];
- //    $search = [];	
+<?php
+	if($arr_phanquyen->xem == 0){header("location:thong-bao");}
+
 	$data = $query->DanhSach('banner', ['id','ten','mobile'], [], ["id"=>"DESC"], []);
 ?>
 <div class="blog small">
@@ -14,6 +9,14 @@
 		<div class="button"><button><a href="./banner/add">Thêm mới</a></button></div>
 		<div class="clear"></div>
 	</div>
+	<?php
+		echo '<h1>Chao</h1>';
+		echo 'nhom:'.$__NHOM__;
+		echo '<br>trang:'.$ps;
+		echo "<pre>";
+		print_r($arr_phanquyen);
+		echo "</pre>";
+	?>
 	<table class="table">
         <thead>
             <tr>

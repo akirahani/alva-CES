@@ -1,4 +1,5 @@
 <?php
+    if($arr_phanquyen->xem == 0){header("location:thong-bao");}
 	#Get list
     $fields = [];
     $sorts = [];
