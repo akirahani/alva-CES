@@ -36,6 +36,7 @@
 <script>
     $(".change-nhom").change(function(){
         let nhom = $(this).val();
+        console.log(nhom);
         $(".loading").show();
         $.ajax({
             method: "POST",
