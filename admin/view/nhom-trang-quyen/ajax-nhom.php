@@ -1,15 +1,12 @@
 <?php
-	require_once "../../model/Trang.php";
-	require_once "../../model/PhanQuyen.php";
-	$trang = new Trang();
-    $phanquyen = new PhanQuyen();
-
+	require_once("../../model/Query.php");
+	require_once()
+	$query = new Query();
     if($_POST['nhom'] != 0)
     {
     	$idnhom = $_POST['nhom'];
-    	$data_trang = $trang->DanhSach();
-    	$data_phanquyen = $phanquyen->DanhSach($idnhom);
-    	
+    	$data_trang = $query->DanhSach('trang',[],[],[],[]);
+    	$data_phanquyen = $query->DanhSach('phan_quyen',[],['nhom'=>'='],[],[],['nhom'=>$idnhom]);
     	$arr_trang = [];
     	foreach ($data_phanquyen as $keypq => $valuepq) 
     	{
@@ -35,7 +32,7 @@
 	        ?>
 	        <tr>
 	            <td class="can-giua"><?=$thutu?></td>
-	            <td><?=$value->ten?></td>
+	            <td><?=$value->name?></td>
 	            <td class="can-giua"><?=$value->id?></td>
 	            <td class="can-giua">
 	            <?php 
