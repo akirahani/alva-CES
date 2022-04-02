@@ -6,7 +6,7 @@ class Data{
     	try 
     	{
 		    #$this->con=new PDO("mysql:host=localhost;dbname=nhdiegxm_dienphuc;charset=utf8", "nhdiegxm_dienphuc", "]7&tVTpPaAP(");
-		    $this->con=new PDO("mysql:host=localhost;dbname=titanstone;charset=utf8", "root", "");
+		    $this->con=new PDO("mysql:host=localhost;dbname=alva;charset=utf8", "root", "");
 		}
 		catch (Exception $e) 
 		{

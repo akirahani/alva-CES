@@ -3,8 +3,8 @@
 	session_start();
 	require_once "model/Query.php";
 	$query = new Query();
-	$access = [1];
-	$website = "Diện Phúc";
+	$access = [1,2,3];
+	$website = "Alva";
 ?>
 <!DOCTYPE html>
 <html lang="vi">

@@ -46,6 +46,10 @@
 					require_once "controller/".$p.".php";
 					$ps = $p;
 					$path = 'view/'.$p.'/list.php';
+					$quyen = $query->ChiTiet('phanquyen',[],["nhom"=>"=","trang"=>"="],["nhom"=>$__NHOM__,"trang"=>$p]);
+					if($quyen->xem == 0){
+						header('location:./');
+					}
 				}
 				else{
 					require_once "controller/".$p.".php";
@@ -57,12 +61,22 @@
 						$url_cut = $url_full;
 					}
 					$path = $url_cut.'.php';
+					$quyen = $query->ChiTiet('phanquyen',[],["nhom"=>"=","trang"=>"="],["nhom"=>$__NHOM__,"trang"=>$p]);
+					if($quyen->them == 0){
+						header('location: ././');
+					}else if($quyen->sua == 0){
+						header('location: ././');
+					}
+					else if($quyen->xoa == 0){
+						header('location: ././');
+					}
 				}
 			}
 			else{
 				$folder = "home";
 				require_once 'controller/'.$folder.'.php';
 				$path = 'view/'.$folder.'/list.php';
+				$arr_trang = $query->ChiTiet('phanquyen',[],["nhom"=>"=","trang"=>"="],["nhom"=>$__NHOM__,"trang"=>$ps]);
 			}
 		}
 		else{
@@ -72,6 +86,7 @@
 					require_once "controller/".$string_page[0].".php";
 					$ps = $string_page[0];
 					$path = 'view/'.$string_page[0].'/list.php';
+					// $arr_trang = $query->ChiTiet('phanquyen',[],["nhom"=>"=","trang"=>"="],["nhom"=>$__NHOM__,"trang"=>$ps]);
 				}
 				else{
 					require_once "controller/".$string_page[0].".php";
@@ -83,14 +98,16 @@
 						$url_cut = $url_full;
 					}
 					$path = $url_cut.'.php';
+					// $arr_trang = $query->ChiTiet('phanquyen',[],["nhom"=>"=","trang"=>"="],["nhom"=>$__NHOM__,"trang"=>$ps]);
 				}
 			}
 			else{
 				$folder = "home";
 				require_once 'controller/'.$folder.'.php';
 				$path = 'view/'.$folder.'/list.php';
+				// $arr_trang = $query->ChiTiet('phanquyen',[],["nhom"=>"=","trang"=>"="],["nhom"=>$__NHOM__,"trang"=>$ps]);
 			}
 		}
 	}
-	// var_dump($path);
+
 ?>

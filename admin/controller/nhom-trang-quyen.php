@@ -1,1 +1,3 @@
-<?php  ?>
+<?php 
+    $nhom = $query->DanhSach('nhom',[],[],[],[]);
+ ?>
