@@ -4,8 +4,8 @@
 	
 	if(isset($_POST['submit']))
 	{
-		$banner = new Banner();
-		$banner->CapNhat($query);
+		$banner = new Trang();
+		$banner->CapNhat($query,$id);
 	}
 ?>
 

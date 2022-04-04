@@ -1,14 +1,11 @@
 <?php
     $_SESSION['danhmuc'] = [];
     $data_thongso = $query->DanhSach("thongso");
-
-    #Xử lý danh mục
     $data_danhmuc = $query->DanhSach("danhmuc");
     $arr_danhmuc = [];
     foreach ($data_danhmuc as $key => $value) {
         $arr_danhmuc[$value->id] = $value->ten;
     }
-
     #Xử lý loại
     $data_loai = $query->DanhSach("loai");
     $arr_loai = [];
@@ -23,7 +20,7 @@
 	if(isset($_POST['add']))
 	{
         $da = new Da();
-        $da->ThemMoi($query,$lib);
+        $da->ThemMoi($query,$lib,$data_danhmuc,$data_loai);
 	}
 ?>
 <div class="blog medium">

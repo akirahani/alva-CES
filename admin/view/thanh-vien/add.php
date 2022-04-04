@@ -7,35 +7,8 @@
     <?php
     if(isset($_POST['add']))
     {
-        if($_POST['username'] != "")
-        {
-            $fields = [];
-            $operator = ["username" => "="];
-            $condition = ["username" => $_POST['username']];
-            $check_thanhvien = $query->ChiTiet("thanhvien", $fields, $operator, $condition);
-            if(empty($check_thanhvien))
-            {
-                $fields = ["username", "fullname", "matkhau", "nhom", "actived", "hinhanh"];
-                $post_form = [
-                    'username' => $_POST['username'],
-                    'fullname' => $_POST['fullname'],
-                    'matkhau' => md5($_POST['password']),
-                    'nhom' => 1,
-                    'actived' => 1,
-                    'hinhanh' => 'alva.png'
-                ];
-                $query->ThemMoi("thanhvien", $fields, $post_form);
-                header("location:list");
-            }
-            else
-            {
-                echo '<h1 style="color:red">User thành viên đã tồn tại!</h1>';
-            }
-        }
-        else
-        {
-            header("location:add");
-        }
+        $thanhvien = new ThanhVien();
+        $thanhvien->ThemMoi($query);
     }
     ?>
     <form method="post" class="form">

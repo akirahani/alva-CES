@@ -1,15 +1,6 @@
 <?php
-    #Nhóm - Trang - Phân quyền
-    // require_once "model/PhanQuyen.php";
-    // $phanquyen = new PhanQuyen();
-    // $data_phanquyen = $phanquyen->NhomTrangQuyen($__NHOM__, 4);
-    // if( empty($data_phanquyen) || $data_phanquyen->sua == 0 ) header("location:./");
-    
-    #Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $__ID__];
-    $data_detail = $query->ChiTiet("thanhvien", $fields, $operator, $condition);
+
+    $data_detail = $query->ChiTiet("thanhvien",[],  ["id" => "="], ["id" => $__ID__]);
 
     if(isset($_POST['edit']))
     {

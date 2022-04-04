@@ -1,27 +1,8 @@
 <?php
 	if(isset($_POST['insert']))
 	{
-		if(!empty($_FILES['file']['tmp_name']))
-        {
-            $hinh=date('Y-m-d-H-i-s').$lib->changeTitle($_FILES['file']['name']); 
-            move_uploaded_file($_FILES['file']['tmp_name'], "../uploads/chinh-sach/".$hinh);
-        }
-        else
-        {
-            $hinh = NULL;
-        }
-
-        $fields = ["ten", "hinh", "mota", "noidung", "ngay", "slug"];
-		$post_form = [
-			"ten" => $_POST['ten'],
-        	"hinh" => $hinh,
-        	"mota" => $_POST['mota'],
-        	"noidung" => $_POST['noidung'],
-        	"ngay" => date("Y-m-d"),
-        	"slug" => $_POST['slug']
-		];
-		$query->ThemMoi("chinhsach", $fields, $post_form);
-        header("location:list");
+		$chinhsach = new ChinhSach();
+		$chinhsach->ThemMoi($query,$lib);
 	}
 ?>
 <div class="blog medium">

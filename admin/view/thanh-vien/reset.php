@@ -1,24 +1,11 @@
 <?php
 	isset($_GET['id']) ? $id=$_GET['id'] : $id=0;
-	#Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $id];
-    $data_detail = $query->ChiTiet("thanhvien", $fields, $operator, $condition);
+    $data_detail = $query->ChiTiet("thanhvien",  [], ["id" => "="], ["id" => $id]);
 
     if(isset($_POST['reset']))
     {
-        if($_POST['matkhau'] != "")
-        {
-            $fields = ["matkhau"];
-            $condition = ["id"];
-            $post_form = [
-                "matkhau" => md5($_POST['matkhau']),
-                "id" => $id
-            ];
-            $query->CapNhat("thanhvien", $fields, $condition, $post_form);
-            header("location:list");
-        }
+        $thanhvien = new ThanhVien();
+        $thanhvien->Reset($query,$id);
     }
 ?>
 <div class="blog small">

@@ -61,7 +61,7 @@
 			            <td class="can-giua"><img src="../uploads/tin-tuc/<?=$value->vuong?>" height=30 /></td>
 			            <td class="can-giua">
 			            	<a href="tin-tuc/edit?id=<?=$value->id?>"><i class="fas fa-pencil"></i></a>
-	                    	<a  onclick="confirm('Bạn có chắc muốn xóa?')" href="loai-tin/del?id=<?=$value->id?> " ><i class="fal fa-trash-alt"></i></a>
+	                    	<a  onclick="confirm('Bạn có chắc muốn xóa?')" href="tin-tuc/del?id=<?=$value->id?> " ><i class="fal fa-trash-alt"></i></a>
 	                    </td>
 			        </tr>
 				<?php

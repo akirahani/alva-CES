@@ -1,25 +1,12 @@
 <?php
 	isset($_GET['id']) ? $id=$_GET['id'] : $id=0;
-	#Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $id];
-    $data_detail = $query->ChiTiet("thanhvien", $fields, $operator, $condition);
+    $data_detail = $query->ChiTiet("thanhvien",  [], ["id" => "="], ["id" => $id]);
 	
     // Cập nhật tài khoản
     if(isset($_POST['edit']))
     {
-        if($_POST['fullname'] != "")
-        {
-            $fields = ["fullname"];
-            $condition = ["id"];
-            $post_form = [
-                "fullname" => $_POST['fullname'],
-                "id" => $id
-            ];
-            $query->CapNhat("thanhvien", $fields, $condition, $post_form);
-            header("location:list");
-        }
+        $thanhvien = new ThanhVien();
+        $thanhvien->Edit($query,$id);
     }
 ?>
 <div class="blog small">

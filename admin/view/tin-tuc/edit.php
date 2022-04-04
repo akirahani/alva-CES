@@ -1,42 +1,18 @@
 <?php
 	isset($_GET['id']) ? $id = $_GET['id'] : $id = 0;
-	#Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $id];
-    $data_detail = $query->ChiTiet("tintuc", $fields, $operator, $condition);
+    $data_detail = $query->ChiTiet("tintuc", [], ["id" => "="], ["id" => $id]);
     $data_loaitin = $query->DanhSach("loaitin", [], [], [], [], [], []);
 	// Mảng tag
-	if($data_detail->tag != NULL)
-	{
-		$arr_tag = explode(",", $data_detail->tag);
-	}
-	else
-	{
-		$arr_tag = [];
-	}
+	$tintuc = new Tin();
+	$arr_tag =$tintuc->MangTag($data_detail);
 	// Vuông
-	if($data_detail->vuong != NULL)
-	{
-		$vuong_old = $data_detail->vuong;
-	}
-	else
-	{
-		$vuong_old = NULL;
-	}
+	$vuong_old =$tintuc->Vuong($data_detail);
 	// Dài
-	if($data_detail->dai != NULL)
-	{
-		$dai_old = $data_detail->dai;
-	}
-	else
-	{
-		$dai_old = NULL;
-	}
+	$dai_old =$tintuc->Dai($data_detail);
 	if(isset($_POST['edit']))
 	{
 		$tin = new Tin();
-        $tin->CapNhat($query,$id);   
+        $tin->CapNhat($query,$id,$lib,$data_detail);   
 	}
 ?>
 <div class="blog medium">
