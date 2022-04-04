@@ -2,23 +2,8 @@
     if(isset($_POST['add']))
     {
 
-    	if(strtotime($_POST['ngaymua']) < strtotime($_POST['ngayhet'])){
-	    	$fields = ["ten", "dns", "ngay", "ngayhet"];
-			$post_tenmien = [
-				"ten" => $_POST['ten'],
-				"dns" => $_POST['dns'],
-				"ngay" => $_POST['ngaymua'],
-				"ngayhet" => $_POST['ngayhet']
-			];
-			$query->ThemMoi("tenmien", $fields, $post_tenmien);
-	        header("location:list");
-    	}
-    	else{
-    		echo "<script>
-		     	 window.location.href = 'ten-mien/add';
-		      	alert('Cần xem lại thông tin về thời gian');
-			</script>";
-    	}
+    	$mien = new Mien();
+    	$mien->ThemMoi($query);
 
     }
 ?>

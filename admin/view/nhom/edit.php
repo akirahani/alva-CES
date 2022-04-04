@@ -1,9 +1,5 @@
 <?php
-	#Nhóm - Trang - Phân quyền
-    // require_once "model/PhanQuyen.php";
-    // $phanquyen = new PhanQuyen();
-    // $data_phanquyen = $phanquyen->NhomTrangQuyen($__NHOM__, 3);
-    // if( empty($data_phanquyen) || $data_phanquyen->sua == 0 ) header("location:./");
+
     
 	isset($_GET['id']) ? $id = $_GET['id'] : $id = 0;
 	#Detail

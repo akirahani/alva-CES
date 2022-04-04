@@ -1,12 +1,6 @@
  <?php
-	#Get list
-	$fields = [];
-	$sorts = ["id" => "DESC"];
-	$limits = [];
-	$condition = [];
-	$forms = [];
-    $search = [];
-	$data_tenmien = $query->DanhSach("tenmien", $fields, $condition, $sorts, $limits, $forms, $search);
+
+	$data_tenmien = $query->DanhSach("tenmien", [],  [], ["id" => "DESC"]);
 
 	#Phân trang
     $total_row = count($data_tenmien);

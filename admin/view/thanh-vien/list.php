@@ -1,12 +1,6 @@
 <?php
-    #Get list
-    $fields = [];
-    $sorts = ["id" => "DESC"];
-    $limits = [];
-    $condition = [];
-    $forms = [];
-    $search = [];
-    $data_list = $query->DanhSach("thanhvien", $fields, $condition, $sorts, $limits, $forms, $search);
+
+    $data_list = $query->DanhSach("thanhvien",  [], [],["id" => "DESC"], [], [],[]);
 ?>
 <div class="blog small">
     <div class="bread">

@@ -1,11 +1,4 @@
 <?php
-    #Nhóm - Trang - Phân quyền
-    // require_once "model/PhanQuyen.php";
-    // $phanquyen = new PhanQuyen();
-    // $data_phanquyen = $phanquyen->NhomTrangQuyen($__NHOM__, 4);
-    // if( empty($data_phanquyen) || $data_phanquyen->sua == 0 ) header("location:./");
-    
-	#Detail
     $fields = [];
     $operator = ["id" => "="];
     $condition = ["id" => $__ID__];
@@ -13,17 +6,8 @@
 
     if(isset($_POST['reset']))
     {
-        if($_POST['password'] != "")
-        {
-            $fields = [ "matkhau" ];
-            $condition = ["id"];
-            $post_form = [
-                'matkhau' => md5($_POST['password']),
-                'id' => $__ID__
-            ];
-            $query->CapNhat("thanhvien", $fields, $condition, $post_form);
-            header("location:reset-mat-khau");
-        }
+        $thanhvien = new ThanhVien();
+        $thanhvien->Reset($query,$__ID__);
     }
 ?>
 <div class="blog small">

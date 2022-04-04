@@ -5,7 +5,7 @@
 
 	<div class="bread">
 		<h1>Trang <span>| danh sách</span></h1>
-		<div class="button"><button><a href="trang/add">Thêm mới</a></button></div>
+		<div class="button"><button><a href="trang/adD">Thêm mới</a></button></div>
 		<div class="clear"></div>
 	</div>
 

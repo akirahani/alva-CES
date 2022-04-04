@@ -3,7 +3,7 @@
 	if(isset($_POST['add']))
 	{
 		$tin = new Tin();
-        $tin->CapNhat($query);
+        $tin->ThemMoi($query,$lib,$data_detail);
 	}
 ?>
 <div class="blog medium">

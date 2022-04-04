@@ -2,33 +2,12 @@
     isset($_GET['id']) ? $id = $_GET['id'] : $id = 0;
     isset($_GET ['page']) ? $page_get = intval($_GET ['page']) : $page_get = 1;
 
-    #Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $id];
-    $data_tenmien = $query->ChiTiet("tenmien", $fields, $operator, $condition);
+    $data_tenmien = $query->ChiTiet("tenmien", [], ["id" => "="], ["id" => $id]);
 
     if(isset($_POST['edit']))
     {
-        if(strtotime($_POST['ngaymua']) < strtotime($_POST['ngayhet'])){
-            $fields = ["ten", "dns", "ngay", "ngayhet"];
-            $condition = ["id"];
-            $post_tenmien = [
-                "ten" => $_POST['ten'],
-                "dns" => $_POST['dns'],
-                "ngay" => $_POST['ngaymua'],
-                "ngayhet" => $_POST['ngayhet'],
-                "id" => $id
-            ];
-            $query->CapNhat("tenmien", $fields, $condition, $post_tenmien);
-            header("location:list?page=".$page_get);
-        }
-        else{
-            echo "<script>
-                 window.location.href = 'ten-mien/edit?id=$id';
-                alert('Cần xem lại thông tin về thời gian');
-            </script>";
-        }
+        $mien = new Mien();
+        $mien->CapNhat($query,$id);
     }
 ?>
 <div class="blog small">

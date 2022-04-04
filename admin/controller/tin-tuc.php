@@ -1,9 +1,68 @@
 <?php 
 	class Tin
 	{
+		public function MangTag($data_detail){
+			if($data_detail->tag != NULL)
+			{
+				$arr_tag = explode(",", $data_detail->tag);
+			}
+			else
+			{
+				$arr_tag = [];
+			}
+			return $arr_tag;
+		}
+		public function Vuong($data_detail){
+			if($data_detail->vuong != NULL)
+			{
+				$vuong_old = $data_detail->vuong;
+			}
+			else
+			{
+				$vuong_old = NULL;
+			}
+			return $vuong_old;
+		}
+		public function Dai($data_detail){
+			if($data_detail->dai != NULL)
+			{
+				$dai_old = $data_detail->dai;
+			}
+			else
+			{
+				$dai_old = NULL;
+			}
+			return $dai_old;
+		}
 
-		public function ThemMoi($query)
+
+
+		public function ThemMoi($query,$lib,$data_detail)
 		{
+			if($data_detail->tag != NULL)
+			{
+				$arr_tag = explode(",", $data_detail->tag);
+			}
+			else
+			{
+				$arr_tag = [];
+			}
+			if($data_detail->dai != NULL)
+			{
+				$dai_old = $data_detail->dai;
+			}
+			else
+			{
+				$dai_old = NULL;
+			}
+			if($data_detail->vuong != NULL)
+			{
+				$vuong_old = $data_detail->vuong;
+			}
+			else
+			{
+				$vuong_old = NULL;
+			}
 			if(!empty($_FILES['vuong']['tmp_name']))
 	        {
 	            $vuong=date('Y-m-d-H-i-s').$lib->changeTitle($_FILES['vuong']['name']); 
@@ -78,7 +137,31 @@
 		}
 		
 		
-		public function CapNhat($query,$id){
+		public function CapNhat($query,$id,$lib,$data_detail){
+			if($data_detail->tag != NULL)
+			{
+				$arr_tag = explode(",", $data_detail->tag);
+			}
+			else
+			{
+				$arr_tag = [];
+			}
+			if($data_detail->dai != NULL)
+			{
+				$dai_old = $data_detail->dai;
+			}
+			else
+			{
+				$dai_old = NULL;
+			}
+			if($data_detail->vuong != NULL)
+			{
+				$vuong_old = $data_detail->vuong;
+			}
+			else
+			{
+				$vuong_old = NULL;
+			}
 			if(!empty($_FILES['vuong']['name']))
 	        {  
 	            $vuong=date('Y-m-d-H-i-s').$lib->changeTitle($_FILES['vuong']['name']);      

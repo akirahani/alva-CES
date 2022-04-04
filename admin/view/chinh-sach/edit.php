@@ -1,13 +1,8 @@
 <?php
 	isset($_GET['id']) ? $id = $_GET['id'] : $id = 0;
+    $data_detail = $query->ChiTiet("chinhsach",  [], ["id" => "="], ["id" => $id]);
 
-	#Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $id];
-    $data_detail = $query->ChiTiet("chinhsach", $fields, $operator, $condition);
-
-	if($data_detail->hinh != NULL)
+	if(isset($data_detail->hinh))
 	{
 		$hinh_old = $data_detail->hinh;
 	}
@@ -17,30 +12,8 @@
 	}
 	if(isset($_POST['update']))
 	{
-		// Xử lý file hồ sơ
-        if(!empty($_FILES['file']['name']))
-        {  
-            $hinh=date('Y-m-d-H-i-s').$lib->changeTitle($_FILES['file']['name']);      
-            move_uploaded_file($_FILES['file']['tmp_name'], "../uploads/chinh-sach/".$hinh);
-            unlink('../uploads/chinh-sach/'.$hinh_old);
-            $hinh_save = $hinh;
-        }
-        else
-        {
-            $hinh_save = $hinh_old;
-        }
-        $fields = ["ten", "hinh", "mota", "noidung", "slug"];
-        $condition = ["id"];
-        $post_form = [
-			"ten" => $_POST['ten'],
-        	"hinh" => $hinh_save,
-        	"mota" => $_POST['mota'],
-        	"noidung" => $_POST['noidung'],
-        	"slug" => $_POST['slug'],
-            "id" => $id
-        ];
-        $query->CapNhat("chinhsach", $fields, $condition, $post_form);
-        header("location:list");
+		$chinhsach = new ChinhSach();
+		$chinhsach->CapNhat($query,$id,$lib);
 	}
 ?>
 <div class="blog medium">

@@ -11,24 +11,24 @@
 			];
 			$query->ThemMoi("danhmuc", $fields, $post_form);
 	        // Xử lý danh mục
-	        // $this->load->XuLiDanhMuc($query);
+	        $this->load->XuLiDanhMuc($query);
 	        header("location:list");
 		}
 		// 
 		
 		public function CapNhat($query,$id){
 	        $query->CapNhat("danhmuc", ["ten", "slug"], ["id"],["ten" => $_POST['ten'],"slug" => $_POST['slug'],"id" => $id]);
-     		// $this->XuLiDanhMuc($query);
+     		$this->XuLiDanhMuc($query);
 	        header("location:list");
 		}
 			
 		public function Xoa($query,$id){
 			$query->Xoa("danhmuc", ["id" => "="],["id" => $id]);
 			// Xử lý danh mục
-			// $this->XuLiDanhMuc($query);
+			$this->XuLiDanhMuc($query);
 		    header("location:list");
 		}
-		public function XyLiDanhMuc($query){
+		public function XuLiDanhMuc($query){
 			
 			$data_danhmuc = $query->DanhSach("danhmuc", [], [], [], [], [], []);
 		    $arr_danhmuc = [];

@@ -1,182 +1,29 @@
 <?php
     isset($_GET['id']) ? $id = $_GET['id'] : $id = 0;
     isset($_GET ['page']) ? $page_get = intval($_GET ['page']) : $page_get = 1;
-    #Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $id];
-    $data_da_chitiet = $query->ChiTiet("da", $fields, $operator, $condition);
-
+    $data_da_chitiet = $query->ChiTiet("da",  [], ["id" => "="],["id" => $id]);
     $data_thongso = $query->DanhSach("thongso", [], [], [], [], [], []);
-    
-    #Xử lý đá danh mục
-    $arr_dadanhmuc = [];
     $data_dadanhmuc = $query->DanhSach("dadanhmuc", [], ["da" => "="], [], [], ["da"=>$id]);
-    $_SESSION['danhmuc'] = [];
-    foreach ($data_dadanhmuc as $key => $value) 
-    {
-        array_push($arr_dadanhmuc, $value->danhmuc);
-        if(!array_key_exists($value->danhmuc, $_SESSION['danhmuc']))
-        {
-            $_SESSION['danhmuc'][$value->danhmuc] = $value->danhmuc;
-        }
-    }
-
-    #Đá thông số
-    $arr_dathongso = [];
-    $data_dathongso = $query->DanhSach("dathongso", [], ["da" => "="], [], [], ["da" => $id], []);
-    foreach ($data_dathongso as $key => $value) {
-    	array_push($arr_dathongso, $value->thongso);
-    }
- 
-    #Xử lý danh mục
     $data_danhmuc = $query->DanhSach("danhmuc", [], [], [], [], [], []);
-    $arr_danhmuc = [];
-    foreach ($data_danhmuc as $key => $value) {
-        $arr_danhmuc[$value->id] = $value->ten;
-    }
-
-    #Xử lý loại
     $data_loai = $query->DanhSach("loai", [], [], [], [], [], []);
-    $arr_loai = [];
-    foreach ($data_loai as $key => $value) {
-        $arr_loai[$value->id] = [
-            "ten" => $value->ten,
-            "danhmuc" => $value->danhmuc
-        ];
+    $data_dathongso = $query->DanhSach("dathongso", [], ["da" => "="], [], [], ["da" => $id], []);
+    #Xử lý đá danh mục
+    $da = new Da();
+    $arr_dadanhmuc = $da->XuLiDanhMucCapNhat($data_dadanhmuc);
+    #Đá thông số
+    $arr_dathongso= $da->XuLiDaThongSoCapNhat($data_dathongso,$query,$id);
+    #Xử lý danh mục
+   
+    $arr_danhmuc = $da->XuLiDanhMuc($data_danhmuc);
+    $arr_loai = $da->XuLiLoai($data_loai);
+    // Hình vuông
+    $vuong_old = $da->HinhVuong($data_da_chitiet);
+    $arr_album_old = $da->AlbumVuong($data_da_chitiet);
+    if(isset($_POST['edit']))
+    {
+        $da->CapNhat($query,$id,$data_da_chitiet,$lib,$data_dadanhmuc, $data_dathongso,$data_danhmuc,$data_loai);
+       
     }
-
-	// Hình vuông
-	if($data_da_chitiet->vuong != NULL)
-	{
-		$vuong_old = json_decode($data_da_chitiet->vuong);
-	}
-	else
-	{
-		$vuong_old = NULL;
-	}
-
-	// Album
-	if($data_da_chitiet->album != NULL)
-	{
-		$arr_album_old = explode(",", $data_da_chitiet->album);
-	}
-	else
-	{
-		$arr_album_old = [];
-	}
-	if(isset($_POST['edit']))
-	{
-        // Album
-        if(!empty($_FILES['album']['tmp_name'][0]))
-        {
-        	// Lưu file album
-            $arr_album=[];
-            foreach($_FILES['album']['tmp_name'] as $key => $tmp_name)
-            {
-                $album_ten=date('Y-m-d-H-i-s').$lib->changeTitle($_FILES['album']['name'][$key]); 
-                array_push($arr_album, $album_ten);      
-                move_uploaded_file($_FILES['album']['tmp_name'][$key], "../uploads/van-da/".$album_ten);
-            }
-            $save_album = implode(",", $arr_album);
-            // Xóa file
-            if($data_da_chitiet->album != NULL)
-            {
-            	foreach ($arr_album_old as $key_del => $value_del) {
-            		unlink('../uploads/van-da/'.$value_del);
-            	}
-            }
-        }
-        else
-        {
-            $save_album = implode(",", $arr_album_old);
-        }
-
-        // Danh mục
-        if(!empty($_POST['danhmuc']))
-        {
-            $query->Xoa("dadanhmuc", ["da" => "="], ["da" => $id]);
-            foreach ($_POST['danhmuc'] as $key_ddm => $value_ddm) 
-            {
-                $query->ThemMoi("dadanhmuc", ["da", "danhmuc"], ["da" => $id, "danhmuc" => $value_ddm]);
-            }
-            $str_danhmuc = implode(",", $_POST['danhmuc']);
-        }
-        else
-        {
-            $query->Xoa("dadanhmuc", ["da" => "="], ["da" => $id]);
-            $str_danhmuc = NULL;
-        }
-        // Hình ảnh đại diện
-        $file_tmp = [];
-        foreach ($arr_danhmuc as $key => $value)
-        {
-            $str_pic = "dm-".$key;
-            // Hinhg vuông
-            if(isset($_FILES['vuong'.$key]['name']) && !empty($_FILES['vuong'.$key]['name']))
-            {
-                $vuong=date('Y-m-d-H-i-s').$lib->changeTitle($_FILES['vuong'.$key]['name']);
-                move_uploaded_file($_FILES['vuong'.$key]['tmp_name'], "../uploads/van-da/".$vuong);
-                if($vuong_old != NULL)
-                {
-                    unlink('../uploads/van-da/'.$vuong_old->$str_pic);
-                }
-                $file_tmp[$str_pic] = $vuong;
-            }
-            else
-            {
-                if(isset($vuong_old->$str_pic))
-                {
-                    $file_tmp[$str_pic] = $vuong_old->$str_pic;
-                }
-                else
-                {
-                    $file_tmp[$str_pic] = NULL;
-                }
-            }
-        }
-        $vuong_save = json_encode($file_tmp);
-  
-        $fields = ["ten", "vuong", "album", "gioithieu", "noidung", "danhmuc", "xuatxu", "slug", "noibat", "mota"];
-        $condition = ["id"];
-        $post_form = [
-            "ten" => $_POST['ten'],
-            "vuong" => $vuong_save,
-            "album" => $save_album,
-            "gioithieu" => $_POST['gioithieu'],
-            "noidung" => $_POST['noidung'],
-            "danhmuc" => $str_danhmuc,
-            "xuatxu" => $_POST['xuatxu'],
-            "slug" => $_POST['slug'],
-            "noibat" => $_POST['noibat'],
-            "mota" => $_POST['mota'],
-            "id" => $id
-        ];
-        $query->CapNhat("da", $fields, $condition, $post_form);
-        $query->Xoa("dathongso", ["da" => "="], ["da" => $id]);
-        if(!empty($_POST['thongso']))
-        {
-            foreach ($_POST['thongso'] as $key => $value) 
-            {
-                $fields = [ "da", "thongso" ];
-                $post_form = [
-                    "da" => $id,
-                    "thongso" => $value
-                ];
-                $query->ThemMoi("dathongso", $fields, $post_form);
-            }
-        }
-        #Xử lý sản phẩm
-        $data_list = $query->DanhSach("da", ["ten", "vuong", "mota", "slug", "danhmuc"], ["noibat" => "="], [], [], ["noibat" => 1]);
-        $fields = ["sanpham"];
-        $condition = ["id"];
-        $post_form = [
-            "sanpham" => json_encode($data_list),
-            "id" => 1
-        ];
-        $query->CapNhat("company", $fields, $condition, $post_form);
-        header("location:list?page=".$page_get);
-	}
 ?>
 <div class="blog medium">
 
