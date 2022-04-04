@@ -1,35 +1,10 @@
 <?php
 	isset($_GET['id']) ? $id = $_GET['id'] : $id = 0;
-	#Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $id];
-    $data_detail = $query->ChiTiet("danhmuc", $fields, $operator, $condition);
+    $data_detail = $query->ChiTiet("danhmuc", [],["id" => "="],["id" => $id]);
 	if(isset($_POST['update']))
 	{
-        $fields = ["ten", "slug"];
-        $condition = ["id"];
-        $post_form = [
-			"ten" => $_POST['ten'],
-        	"slug" => $_POST['slug'],
-            "id" => $id
-        ];
-        $query->CapNhat("danhmuc", $fields, $condition, $post_form);
-        // Xử lý danh mục
-        $data_danhmuc = $query->DanhSach("danhmuc", [], [], [], [], [], []);
-        $arr_danhmuc = [];
-        foreach ($data_danhmuc as $key => $value) 
-        {
-        	$arr_danhmuc[$value->slug] = [$value->id, $value->ten, $value->slug];
-        }
-        $fields = ["danhmuc"];
-        $condition = ["id"];
-        $post_form = [
-			"danhmuc" => json_encode($arr_danhmuc),
-            "id" => 1
-        ];
-        $query->CapNhat("company", $fields, $condition, $post_form);
-        header("location:list");
+        $danhmuc = new DanhMuc();
+        $danhmuc->CapNhat($query,$id);
 	}
 ?>
 <div class="blog small">

@@ -1,45 +1,12 @@
 <?php
 	isset($_GET['id']) ? $id = $_GET['id'] : $id = 0;
 	$data_danhmuc = $query->DanhSach("danhmuc");
-	#Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $id];
-    $data_detail = $query->ChiTiet("bannerdanhmuc", $fields, $operator, $condition);
+    $data_detail = $query->ChiTiet("bannerdanhmuc",[], ["id" => "="],["id" => $id]);
 
 	if(isset($_POST['update']))
 	{
-		if(!empty($_FILES['file']['name']))
-		{
-			$pic = date('Y-m-d-H-i-s-').$_FILES['file']['name'];
-			move_uploaded_file($_FILES['file']['tmp_name'], '../uploads/banner-danh-muc/'.$pic);
-			unlink('../uploads/banner-danh-muc/'.$data_detail->hinh);
-		}
-		else
-		{
-			$pic = $data_detail->hinh;
-		}
-
-		$fields = ["ten", "link", "hinh", "danhmuc"];
-        $condition = ["id"];
-        $post_form = [
-			"ten" => $_POST['ten'],
-			"link" => $_POST['link'],
-			"hinh" => $pic,
-			"danhmuc" => $_POST['danhmuc'],
-            "id" => $id
-        ];
-        $query->CapNhat("bannerdanhmuc", $fields, $condition, $post_form);
-        #Xử lý banner
-		$data_list = $query->DanhSach("bannerdanhmuc");
-		$fields = ["bannerdanhmuc"];
-        $condition = ["id"];
-        $post_form = [
-			"bannerdanhmuc" => json_encode($data_list),
-            "id" => 1
-        ];
-        $query->CapNhat("company", $fields, $condition, $post_form);
-		header("location:list");
+		$bannerDM = new BannerDM();
+		$bannerDM->CapNhat($query,$id,$data_detail);
 	}
 ?>
 <div class="blog small">
@@ -86,43 +53,4 @@
 		<input type="submit" name="update" value="Update" />
 	</form>
 </div>
-<script>
-        function readURL(input) {
-	        if (input.files && input.files[0]) {
-	          var reader = new FileReader();
-	          reader.onload = function(e) {
-	            $('#blah').attr('src', e.target.result);
-	          }
-	          reader.readAsDataURL(input.files[0]); // convert to base64 string
-	        }
-	      }
-	    $("#desktop").change(function() {
-	       readURL(this);
-	    });
-	      
-	      $(function() {
-	        // Multiple images preview in browser
-	        var imagesPreview = function(input, placeToInsertImagePreview) {
-
-	            if (input.files) {
-	                var filesAmount = input.files.length;
-
-	                for (i = 0; i < filesAmount; i++) {
-	                    var reader = new FileReader();
-
-	                    reader.onload = function(event) {
-	                        $($.parseHTML('<img  class="img-display" style=" width:10%; padding:10px">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-	                    }
-
-	                    reader.readAsDataURL(input.files[i]);
-	                }
-	            }
-
-	        };
-
-	        $('#desktop').change(function(){
-	            imagesPreview(this,'div.desktop');
-	
-	    	});
-	   });
-</script>
+<script src="view/banner-danh-muc/bannerDM.js"></script>

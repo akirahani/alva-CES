@@ -4,15 +4,8 @@
 
 	if(isset($_POST['add']))
 	{
-        $fields = ["ten", "danhmuc", "loai", "thutu"];
-		$post_form = [
-			"ten" => $_POST['ten'],
-        	"danhmuc" => $_POST['danhmuc'],
-        	"loai" => $_POST['loai'],
-        	"thutu" => $_POST['thutu']
-		];
-		$query->ThemMoi("thongso", $fields, $post_form);
-        header("location:list");
+       	$thongso = new ThongSo();
+		$thongso->ThemMoi($query);
 	}
 ?>
 <div class="blog small">

@@ -2,84 +2,8 @@
 	$data_loaitin = $query->DanhSach("loaitin", [], [], [], [], [], []);
 	if(isset($_POST['add']))
 	{
-		// Hình vuông
-		if(!empty($_FILES['vuong']['tmp_name']))
-        {
-            $vuong=date('Y-m-d-H-i-s').$lib->changeTitle($_FILES['vuong']['name']); 
-            move_uploaded_file($_FILES['vuong']['tmp_name'], "../uploads/tin-tuc/".$vuong);
-        }
-        else
-        {
-            $vuong = NULL;
-        }
-        // Hình dài
-        if(!empty($_FILES['dai']['tmp_name']))
-        {
-            $dai=date('Y-m-d-H-i-s').$lib->changeTitle($_FILES['dai']['name']); 
-            move_uploaded_file($_FILES['dai']['tmp_name'], "../uploads/tin-tuc/".$dai);
-        }
-        else
-        {
-            $dai = NULL;
-        }
-        // Tag
-        if(!empty($_POST['tag']))
-        {
-        	$tag_string = implode(",", $_POST['tag']);
-        }
-        else
-        {
-        	$tag_string = NULL;
-        }
-        //  if($_POST->hasFile('upload')) {
-        //     //get filename with extension
-        //     $filenamewithextension = $request->file('upload')->getClientOriginalName();
-
-        //     //get filename without extension
-        //     $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-
-        //     //get file extension
-        //     $extension = $request->file('upload')->getClientOriginalExtension();
-
-        //     //filename to store
-        //     $filenametostore = $filename.'_'.time().'.'.$extension;
-
-        //     //Upload File
-        //     $request->file('upload')->storeAs('public/uploads', $filenametostore);
-
-        //     $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-        //     $url = asset('storage/uploads/'.$filenametostore);
-        //     $msg = 'Image successfully uploaded';
-        //     $re = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
-
-        //     // Render HTML output
-        //     @header('Content-type: text/html; charset=utf-8');
-        //     echo $re;
-        // }
-        $fields = [	"ten", "vuong", "dai", "mota", "noidung", "ngay", "tag", "noibat", "slug", "loai" ];
-        $post_form=[
-        	"ten" => $_POST['ten'],
-        	"vuong" => $vuong,
-        	"dai" => $dai,
-        	"mota" => $_POST['mota'],
-        	"noidung" => $_POST['noidung'],
-        	"ngay" => date("Y-m-d"),
-        	"tag" => $tag_string,
-        	"noibat" => $_POST['noibat'],
-        	"slug" => $_POST['slug'],
-        	"loai" => $_POST['loai']
-        ];
-        $query->ThemMoi("tintuc", $fields, $post_form);
-        #Xử lý tin tức
-		$data_list = $query->DanhSach("tintuc", ["ten", "vuong", "mota", "ngay", "slug"], [], ["id" => "DESC"], [3], []);
-		$fields = ["tintuc"];
-        $condition = ["id"];
-        $post_form = [
-			"tintuc" => json_encode($data_list),
-            "id" => 1
-        ];
-        $query->CapNhat("company", $fields, $condition, $post_form);
-        header("location:list");
+		$tin = new Tin();
+        $tin->CapNhat($query);
 	}
 ?>
 <div class="blog medium">

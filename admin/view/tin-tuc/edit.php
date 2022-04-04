@@ -35,64 +35,8 @@
 	}
 	if(isset($_POST['edit']))
 	{
-		// Hình vuông
-        if(!empty($_FILES['vuong']['name']))
-        {  
-            $vuong=date('Y-m-d-H-i-s').$lib->changeTitle($_FILES['vuong']['name']);      
-            move_uploaded_file($_FILES['vuong']['tmp_name'], "../uploads/tin-tuc/".$vuong);
-            unlink('../uploads/tin-tuc/'.$vuong_old);
-            $vuong_save = $vuong;
-        }
-        else
-        {
-            $vuong_save = $vuong_old;
-        }
-        // Hình dài
-        if(!empty($_FILES['dai']['name']))
-        {  
-            $dai=date('Y-m-d-H-i-s').$lib->changeTitle($_FILES['dai']['name']);      
-            move_uploaded_file($_FILES['dai']['tmp_name'], "../uploads/tin-tuc/".$dai);
-            unlink('../uploads/tin-tuc/'.$dai_old);
-            $dai_save = $dai;
-        }
-        else
-        {
-            $dai_save = $dai_old;
-        }
-        // Tag
-        if(!empty($_POST['tag']))
-        {
-        	$tag_string = implode(",", $_POST['tag']);
-        }
-        else
-        {
-        	$tag_string = NULL;
-        }
-        $fields = [	"ten", "vuong", "dai", "mota", "noidung", "tag", "noibat", "slug", "loai" ];
-        $condition = ["id"];
-        $post_form = [
-        	"id" => $id,
-        	"ten" => $_POST['ten'],
-        	"vuong" => $vuong_save,
-        	"dai" => $dai_save,
-        	"mota" => $_POST['mota'],
-        	"noidung" => $_POST['noidung'],
-        	"tag" => $tag_string,
-        	"noibat" => $_POST['noibat'],
-        	"slug" => $_POST['slug'],
-        	"loai" => $_POST['loai']
-        ];
-        $query->CapNhat("tintuc", $fields, $condition, $post_form);
-        #Xử lý tin tức
-		$data_list = $query->DanhSach("tintuc", ["ten", "vuong", "mota", "ngay", "slug"], [], ["id" => "DESC"], [3], []);
-		$fields = ["tintuc"];
-        $condition = ["id"];
-        $post_form = [
-			"tintuc" => json_encode($data_list),
-            "id" => 1
-        ];
-        $query->CapNhat("company", $fields, $condition, $post_form);
-        header("location:list");
+		$tin = new Tin();
+        $tin->CapNhat($query,$id);   
 	}
 ?>
 <div class="blog medium">

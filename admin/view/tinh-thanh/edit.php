@@ -1,23 +1,9 @@
 <?php
 	$option_vungmien = $query->DanhSach("vungmien", [], [], [], [], [], []);
     isset($_GET['id']) ? $id = $_GET['id'] : $id = 0;
-    #Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $id];
-    $data = $query->ChiTiet("tinhthanh", $fields, $operator, $condition);
-	if(isset($_POST['update']))
-	{
-        $fields = ["ten", "vungmien"];
-        $condition = ["id"];
-        $post_form = [
-			"ten" => $_POST['ten'],
-			"vungmien" => $_POST['vungmien'],
-            "id" => $id
-        ];
-        $query->CapNhat("tinhthanh", $fields, $condition, $post_form);
-        header("location:list");
-	}
+    $data = $query->ChiTiet("tinhthanh", [],["id" => "="], ["id" => $id]);
+    $tinhthanh = new TinhThanh();
+    $tinhthanh->CapNhat($query,$id);
 ?>
 <div class="blog small">
 

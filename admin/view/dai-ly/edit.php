@@ -1,64 +1,14 @@
 <?php
 	isset($_GET['id']) ? $id = $_GET['id'] : $id = 0;
-	#Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $id];
-    $data_detail = $query->ChiTiet("daily", $fields, $operator, $condition);
-	// Album
-	if($data_detail->album != NULL)
-	{
-		$arr_album_old = explode(",", $data_detail->album);
-	}
-	else
-	{
-		$arr_album_old = [];
-	}
-
+    $data_detail = $query->ChiTiet("daily", [], ["id" => "="], ["id" => $id]);
+    $daily = new DaiLy();
+	$arr_album_old = $daily->Album($data_detail);
+	$data_tinhthanh = $query->DanhSach("tinhthanh", [], [], [], [], [], []);
 	if(isset($_POST['update']))
 	{
-		// Album
-        if(!empty($_FILES['album']['tmp_name'][0]))
-        {
-        	// Lưu file album
-            $arr_album=[];
-            foreach($_FILES['album']['tmp_name'] as $key => $tmp_name)
-            {
-                $album_ten=date('Y-m-d-H-i-s').$lib->changeTitle($_FILES['album']['name'][$key]); 
-                array_push($arr_album, $album_ten);      
-                move_uploaded_file($_FILES['album']['tmp_name'][$key], "../uploads/dai-ly/".$album_ten);
-            }
-            $save_album = implode(",", $arr_album);
-            // Xóa file
-            if($data_detail->album != NULL)
-            {
-            	foreach ($arr_album_old as $key_del => $value_del) {
-            		unlink('../uploads/dai-ly/'.$value_del);
-            	}
-            }
-        }
-        else
-        {
-            $save_album = implode(",", $arr_album_old);
-        }
-        $fields = [	"ten", "diachi", "dienthoai", "hethong", "tinhthanh", "slug", "map", "gioithieu", "album" ];
-        $condition = ["id"];
-		$post_form = [
-			"id" => $id,
-			"ten" => $_POST['ten'],
-        	"diachi" => $_POST['diachi'],
-        	"dienthoai" => $_POST['dienthoai'],
-        	"hethong" => $_POST['hethong'],
-        	"tinhthanh" => $_POST['tinhthanh'],
-        	"slug" => $_POST['slug'],
-        	"map" => $_POST['map'],
-        	"gioithieu" => $_POST['gioithieu'],
-        	"album" => $save_album
-		];
-        $query->CapNhat("daily", $fields, $condition, $post_form);
-        header("location:list");
+		$daily = new DaiLy();
+        $daily->CapNhat($query,$id,$lib,$data_detail);
 	}
-	$data_tinhthanh = $query->DanhSach("tinhthanh", [], [], [], [], [], []);
 ?>
 <div class="blog small">
 
@@ -110,7 +60,7 @@
 		if($data_detail->album != NULL)
 		{
 			foreach ($arr_album_old as $key_p => $value_p) {
-				echo '<img src="../uploads/dai-ly/'.$value_p.'" height="100" />';
+				echo '<img src="../uploads/dai-ly/'.$value_p.'" height="100" style="padding: 2px;" />';
 			}
 		}
 		?>
@@ -128,42 +78,4 @@
 		<input type="submit" name="update" value="Cập nhật" />
 	</form>
 </div>
- <script>
-	      // desktop
-	function readURL(input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function(e) {
-            $('#blah').attr('src', e.target.result);
-          }
-          reader.readAsDataURL(input.files[0]); // convert to base64 string
-        }
-      }
-	      $("#file").change(function() {
-	        readURL(this);
-	      });
-	      $(function() {
-	        // Multiple images preview in browser
-	        var imagesPreview = function(input, placeToInsertImagePreview) {
-
-	            if (input.files) {
-	                var filesAmount = input.files.length;
-
-	                for (i = 0; i < filesAmount; i++) {
-	                    var reader = new FileReader();
-
-	                    reader.onload = function(event) {
-	                        $($.parseHTML('<img  class="img-display" style=" width:10%; padding:10px">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-	                    }
-
-	                    reader.readAsDataURL(input.files[i]);
-	                }
-	            }
-
-	        };
-
-	        $('#file').change(function(){
-	            imagesPreview(this,'div.file');
-	        });
-	    });
-    </script>
+<script src="view/dai-ly/daily.js"></script>

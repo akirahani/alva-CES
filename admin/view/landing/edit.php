@@ -1,48 +1,10 @@
 <?php
 	isset($_GET['id']) ? $id=$_GET['id'] : $id=0;
-	#Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $id];
-    $detail = $query->ChiTiet("landing", $fields, $operator, $condition);
-	
+    $detail = $query->ChiTiet("landing", [], ["id" => "="], ["id" => $id]);
 	if(isset($_POST['update']))
 	{
-		if($_POST['ten'] != '' && $_POST['link'] != ''  && (strtotime($_POST['ngaydau']) < strtotime($_POST['ngayhet'])))
-		{
-			$fields = ["ten", "link", "ngaydau", "ngayhet"];
-	        $condition = ["id"];
-	        $post_form = [
-				"ten" => $_POST['ten'],
-				"link" => $_POST['link'],
-				"ngaydau" => $_POST['ngaydau'],
-				"ngayhet" => $_POST['ngayhet'],
-	            "id" => $id
-	        ];
-	        $query->CapNhat("landing", $fields, $condition, $post_form);
-
-			// Xử lý save
-	        $landing = $query->DanhSach("landing", [], [], [], [], [], []);
-	        $arr_landing = [];
-	        foreach ($landing as $key => $value) {
-	        	$arr_landing[$value->link] = [$value->id, $value->ten];
-	        }
-	        $fields = ["landing"];
-	        $condition = ["id"];
-	        $post_form = [
-				"landing" => json_encode($arr_landing),
-	            "id" => 1
-	        ];
-	        $query->CapNhat("company", $fields, $condition, $post_form);
-			header("location:list");
-		}
-		else
-		{
-			echo "<script>
-		     	 window.location.href = 'landing/edit?id=$id';
-		      	alert('Cần xem lại thông tin về thời gian');
-			</script>";
-		}
+		$landing = new Landing();
+		$landing->CapNhat($query,$id);
 	}
 ?>
 

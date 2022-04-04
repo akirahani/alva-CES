@@ -1,31 +1,11 @@
 <?php
 	isset($_GET['id']) ? $id = $_GET['id'] : $id = 0;
-	#Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $id];
-    $data_loai = $query->ChiTiet("loai", $fields, $operator, $condition);
+    $data_loai = $query->ChiTiet("loai", [], ["id" => "="],["id" => $id]);
 	$data_danhmuc = $query->DanhSach("danhmuc", [], [], [], [], [], []);
 	if(isset($_POST['update']))
 	{
-		if(!empty($_POST['danhmuc']))
-		{
-			$str_danhmuc = implode(",", $_POST['danhmuc']);
-		}
-		else
-		{
-			$str_danhmuc = NULL;
-		}
-        $fields = ["ten", "slug", "danhmuc"];
-        $condition = ["id"];
-        $post_form = [
-			"ten" => $_POST['ten'],
-        	"slug" => $_POST['slug'],
-        	"danhmuc" => $str_danhmuc,
-            "id" => $id
-        ];
-        $query->CapNhat("loai", $fields, $condition, $post_form);
-        header("location:list");
+		$loai = new Loai();
+		$loai->CapNhat($query,$id);
 	}
 ?>
 <div class="blog small">
@@ -50,11 +30,11 @@
 		{
 			if(in_array($val->id, $arr_danhmuc))
 			{
-				echo '<label><input type="checkbox" name="danhmuc[]" val="'.$val->id.'" checked /> '.$val->ten.'</label><br>';
+				echo '<label><input type="checkbox" name="danhmuc[]" value="'.$val->id.'" checked /> '.$val->ten.'</label><br>';
 			}
 			else
 			{
-				echo '<label><input type="checkbox" name="danhmuc[]" val="'.$val->id.'" /> '.$val->ten.'</label><br>';
+				echo '<label><input type="checkbox" name="danhmuc[]" value="'.$val->id.'" /> '.$val->ten.'</label><br>';
 			}
 		}
 		?>

@@ -1,12 +1,5 @@
 <?php
-	#Get list
-    $fields = [];
-    $sorts = [];
-    $limits = [];
-    $condition = [];
-    $forms = [];
-    $search = [];
-    $data = $query->DanhSach("doitac", $fields, $condition, $sorts, $limits, $forms, $search);
+    $data = $query->DanhSach("doitac");
 ?>
 <div class="blog medium">
 
@@ -35,7 +28,7 @@
                     <td><p style="text-align: center"><?=$val->ten?></p></td>
                     <td class="can-giua">
                         <a href="doi-tac/edit?id=<?=$val->id?>"><i class="fal fa-edit"></i></a>
-                        <a class="remove-doitac" data-id ="<?=$val->id?>" style="cursor: pointer;"><i class="fal fa-trash-alt"></i></a>
+                        <a onclick="confirm('Bạn có chắc muốn xóa?')" href="doi-tac/del?id=<?=$val->id?>"><i class="fal fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <?php
@@ -45,22 +38,3 @@
         </tbody>
     </table>
 </div>
-<script>
-    $('.remove-doitac').click(function(){
-        const cfrm = confirm('Bạn có chắc chắn muốn xóa ?');
-        var id = $(this).data('id');
-        if(cfrm ==true){
-            $.ajax({
-                url : "doi-tac/del",
-                method :"GET",
-                data:{
-                    id :id 
-                },
-                success:function(data){
-                    $('#remove'+id).remove();
-                }
-
-            })
-        }
-    });
-</script>

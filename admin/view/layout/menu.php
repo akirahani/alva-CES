@@ -178,31 +178,10 @@
 		    	<i class="fas fa-globe-americas"></i>
 		    	<span>Các trang quản trị</span>
 		    </a>
-		    <ul <?php if( in_array($p, ["trang", "them-trang", "sua-trang"]) ) echo 'class="inner show" style="display:block"'; else echo 'class="inner"';?>>
-		      	<li <?php if(in_array($p, ["trang", "sua-trang"])) echo 'class="active"';?>><a href="trang">Danh sách</a></li>
-		      	<li <?php if(in_array($p, ["them-trang"])) echo 'class="active"';?>><a href="trang/add">Thêm mới</a></li>
-		    </ul>
-	  	</li>
-	  	<!-- Nhóm -->
-	  	<li class="child-one">
-		    <a class="toggle" href="#">
-		    	<i class="fas fa-globe-americas"></i>
-		    	<span>Nhóm</span>
-		    </a>
-		    <ul <?php if( in_array($p, ["nhom", "them-nhom", "sua-nhom"]) ) echo 'class="inner show" style="display:block"'; else echo 'class="inner"';?>>
-		      	<li <?php if(in_array($p, ["nhom", "sua-nhom"])) echo 'class="active"';?>><a href="nhom">Danh sách</a></li>
-		      	<li <?php if(in_array($p, ["them-nhom"])) echo 'class="active"';?>><a href="nhom/add">Thêm mới</a></li>
-		    </ul>
-	  	</li>
-	  	<!-- Nhóm trang quyền -->
-	  	<li class="child-one">
-		    <a class="toggle" href="#">
-		    	<i class="fas fa-globe-americas"></i>
-		    	<span>Nhóm trang quyền</span>
-		    </a>
-		    <ul <?php if( in_array($p, ["nhom-trang-quyen", "them-nhom-trang-quyen", "sua-nhom-trang-quyen"]) ) echo 'class="inner show" style="display:block"'; else echo 'class="inner"';?>>
-		      	<li <?php if(in_array($p, ["nhom-trang-quyen", "sua-nhom-trang-quyen"])) echo 'class="active"';?>><a href="nhom-trang-quyen">Danh sách</a></li>
-		      	<li <?php if(in_array($p, ["them-nhom-trang-quyen"])) echo 'class="active"';?>><a href="nhom-trang-quyen/add">Thêm mới</a></li>
+		    <ul <?php if( in_array($p, ["trang", "them-trang", "sua-trang"]) && in_array($p, ["nhom", "them-nhom", "sua-nhom"]) &&in_array($p, ["nhom-trang-quyen", "them-nhom-trang-quyen", "sua-nhom-trang-quyen"]) ) echo 'class="inner show" style="display:block"'; else echo 'class="inner"';?>>
+		      	<li <?php if(in_array($p, ["trang", "sua-trang"])) echo 'class="active"';?>><a href="trang">Danh sách trang</a></li>
+		      	<li <?php if(in_array($p, ["nhom-trang-quyen", "sua-nhom-trang-quyen"])) echo 'class="active"';?>><a href="nhom-trang-quyen">Danh sách quyền</a></li>
+		      	<li <?php if(in_array($p, ["nhom", "sua-nhom"])) echo 'class="active"';?>><a href="nhom">Danh sách nhóm</a></li>
 		    </ul>
 	  	</li>
 

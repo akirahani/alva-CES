@@ -1,11 +1,5 @@
 <?php 
-	#Get list
-	$fields = ["id", "ten", "hinh"];
-	$sorts = ["id" => "DESC"];
-	$limits = [];
-	$condition = [];
-	$forms = [];
-	$data_list = $query->DanhSach("bannerdanhmuc");
+	$data_list = $query->DanhSach("bannerdanhmuc",["id", "ten", "hinh"],[],["id" => "DESC"],[],[]);
 ?>
 <div class="blog small">
 	<div class="bread">
@@ -35,7 +29,7 @@
 			            <td class="can-giua"><img src="../uploads/banner-danh-muc/<?=$value->hinh?>" height=30 /></td>
 			            <td class="can-giua">
 			            	<a href="banner-danh-muc/edit?id=<?=$value->id?>"><i class="fas fa-pencil"></i></a>
-	                    	<a data-id ="<?=$value->id?>" style="cursor: pointer;" class="remove_banner_danh_muc"><i class="fal fa-trash-alt"></i></a>
+	                    	<a onclick="confirm('Bạn có chắc muốn xóa?')" href="banner-danh-muc/del?id=<?=$value->id?> "><i class="fal fa-trash-alt"></i></a>
 	                    </td>
 			        </tr>
 				<?php
@@ -45,22 +39,3 @@
         </tbody>
     </table>
 </div>
-<script>
-	$('.remove_banner_danh_muc').click(function(){
-		const cfrm = confirm('Bạn có chắc chắn muốn xóa ?');
-        var id = $(this).data('id');
-        if(cfrm ==true){
-            $.ajax({
-                url : "banner-danh-muc/del",
-                method :"GET",
-                data:{
-                    id :id 
-                },
-                success:function(data){
-                    $('#remove'+id).remove();
-                }
-
-            })
-        }
-	});
-</script>

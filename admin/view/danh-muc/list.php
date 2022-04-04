@@ -1,18 +1,11 @@
 <?php
-    #Get list
-    $fields = [];
-    $sorts = [];
-    $limits = [];
-    $condition = [];
-    $forms = [];
-    $search = [];
-    $data = $query->DanhSach("danhmuc", $fields, $condition, $sorts, $limits, $forms, $search);
+    $data = $query->DanhSach("danhmuc");
 ?>
 <div class="blog small">
 
 	<div class="bread">
 		<h1>Danh mục <span>| danh sách</span></h1>
-		<div class="button"><button><a href="danh-muc/add">Thêm mới</a></button></div>
+		<div class="button"><button><a href="danh-muc/adD">Thêm mới</a></button></div>
 		<div class="clear"></div>
 	</div>
 
@@ -35,7 +28,7 @@
                     <td><?=$val->ten?></td>
                     <td class="can-giua">
                         <a href="danh-muc/edit?id=<?=$val->id?>"><i class="fal fa-edit"></i></a>
-                        <a data-id ="<?=$val->id?>" style="cursor: pointer;" class="remove_danh_muc"  ><i class="fal fa-trash-alt"></i></a>
+                        <a onclick="confirm('Bạn có chắc muốn xóa?')" href="danh-muc/del?id=<?=$val->id?>" ><i class="fal fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <?php
@@ -45,22 +38,3 @@
         </tbody>
     </table>
 </div>
-<script>
-    $('.remove_danh_muc').click(function(){
-        const cfrm = confirm('Bạn có chắc chắn muốn xóa ?');
-        var id = $(this).data('id');
-        if(cfrm ==true){
-            $.ajax({
-                url : "danh-muc/del",
-                method :"GET",
-                data:{
-                    id :id 
-                },
-                success:function(data){
-                    $('#remove'+id).remove();
-                }
-
-            })
-        }
-    });
-</script>

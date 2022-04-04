@@ -1,14 +1,6 @@
 <?php
-	if(isset($_POST['insert']))
-	{
-        $fields = ["ten", "slug"];
-		$post_form = [
-			"ten" => $_POST['ten'],
-			"slug" => $_POST['slug']
-		];
-		$query->ThemMoi("vungmien", $fields, $post_form);
-        header("location:list");
-	}
+	$vungmien = new VungMien();
+	$vungmien->ThemMoi($query);
 ?>
 <div class="blog small">
 

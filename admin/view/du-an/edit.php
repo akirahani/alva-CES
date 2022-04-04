@@ -1,108 +1,13 @@
 <?php
 	isset($_GET['id']) ? $id = $_GET['id'] : $id = 0;
-	#Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $id];
-    $data_detail = $query->ChiTiet("duan", $fields, $operator, $condition);
-
-	// Hình vuông
-	if($data_detail->vuong != NULL)
-	{
-		$vuong_old = $data_detail->vuong;
-	}
-	else
-	{
-		$vuong_old = NULL;
-	}
-	// Hình dài
-	if($data_detail->dai != NULL)
-	{
-		$dai_old = $data_detail->dai;
-	}
-	else
-	{
-		$dai_old = NULL;
-	}
-	// Album
-	if($data_detail->album != NULL)
-	{
-		$arr_album_old = explode(",", $data_detail->album);
-	}
-	else
-	{
-		$arr_album_old = [];
-	}
+    $data_detail = $query->ChiTiet("duan", [], ["id" => "="], ["id" => $id]);
+    $duan= new DuAn();
+    $arr_album_old =   $duan->ChiTietAlbum($data_detail);
 	if(isset($_POST['edit']))
 	{
-		// Hinhg vuông
-        if(!empty($_FILES['vuong']['name']))
-        {  
-            $vuong=date('Y-m-d-H-i-s').$lib->changeTitle($_FILES['vuong']['name']);      
-            move_uploaded_file($_FILES['vuong']['tmp_name'], "../uploads/du-an/".$vuong);
-            if($vuong_old != NULL)
-            {
-            	unlink('../uploads/du-an/'.$vuong_old);
-            }
-            $vuong_save = $vuong;
-        }
-        else
-        {
-            $vuong_save = $vuong_old;
-        }
-        // Hinhg dài
-        if(!empty($_FILES['dai']['name']))
-        {  
-            $dai=date('Y-m-d-H-i-s').$lib->changeTitle($_FILES['dai']['name']);      
-            move_uploaded_file($_FILES['dai']['tmp_name'], "../uploads/du-an/".$dai);
-            if($dai_old != NULL)
-            {
-            	unlink('../uploads/du-an/'.$dai_old);
-            }
-            $dai_save = $dai;
-        }
-        else
-        {
-            $dai_save = $dai_old;
-        }
-        // Album
-        if(!empty($_FILES['album']['tmp_name'][0]))
-        {
-        	// Lưu file album
-            $arr_album=[];
-            foreach($_FILES['album']['tmp_name'] as $key => $tmp_name)
-            {
-                $album_ten=date('Y-m-d-H-i-s').$lib->changeTitle($_FILES['album']['name'][$key]); 
-                array_push($arr_album, $album_ten);      
-                move_uploaded_file($_FILES['album']['tmp_name'][$key], "../uploads/du-an/".$album_ten);
-            }
-            $save_album = implode(",", $arr_album);
-            // Xóa file
-            if($data_detail->album != NULL)
-            {
-            	foreach ($arr_album_old as $key_del => $value_del) {
-            		unlink('../uploads/du-an/'.$value_del);
-            	}
-            }
-        }
-        else
-        {
-            $save_album = implode(",", $arr_album_old);
-        }
-        $fields = [ "ten", "vuong", "dai", "album", "gioithieu", "noidung", "loai" ];
-        $condition = ["id"];
-        $post_form = [
-        	"id" => $id,
-        	"ten" => $_POST['ten'],
-        	"vuong" => $vuong_save,
-        	"dai" => $dai_save,
-        	"album" => $save_album,
-        	"gioithieu" => $_POST['gioithieu'],
-        	"noidung" => $_POST['noidung'],
-        	"loai" => $_POST['loai']
-        ];
-        $query->CapNhat("duan", $fields, $condition, $post_form);
-        header("location:list");
+		$duan= new DuAn();
+        $duan->CapNhat($query,$id,$data_detail,$lib);
+        
 	}
 ?>
 <div class="blog medium">
@@ -155,7 +60,7 @@
 		if($data_detail->album != NULL)
 		{
 			foreach ($arr_album_old as $key_p => $value_p) {
-				echo '<br><br><p><img src="../uploads/du-an/'.$value_p.'" height="150" />';
+				echo '<br><br><p style="display: inline-flex ;padding: 5px;"><img src="../uploads/du-an/'.$value_p.'" height="150" />';
 			}
 		}
 		?>
@@ -174,54 +79,4 @@
 		<input type="submit" name="edit" value="Cập nhật" />
 	</form>
 </div>
-<script>
-          // desktop
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function(e) {
-            $('#blah').attr('src', e.target.result);
-          }
-          reader.readAsDataURL(input.files[0]); // convert to base64 string
-        }
-      }
-          $("#vuong").change(function() {
-            readURL(this);
-          });
-          $("#dai").change(function() {
-            readURL(this);
-          });
-          $("#album").change(function() {
-            readURL(this);
-          });
-          $(function() {
-            // Multiple images preview in browser
-            var imagesPreview = function(input, placeToInsertImagePreview) {
-
-                if (input.files) {
-                    var filesAmount = input.files.length;
-
-                    for (i = 0; i < filesAmount; i++) {
-                        var reader = new FileReader();
-
-                        reader.onload = function(event) {
-                            $($.parseHTML('<img  class="img-display" style=" width:10%; padding:10px">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-                        }
-
-                        reader.readAsDataURL(input.files[i]);
-                    }
-                }
-
-            };
-
-            $('#vuong').change(function(){
-                imagesPreview(this,'div.vuong');
-            });
-            $('#dai').change(function(){
-                imagesPreview(this,'div.dai');
-            });
-            $('#album').change(function(){
-                imagesPreview(this,'div.album');
-            });
-        });
-    </script>
+<script src="view/du-an/du-an.js"></script>
