@@ -28,7 +28,7 @@
                     <td class="can-giua"><?=$value->ten?></td>
                     <td class="can-giua">
                         <a href="loai-tin/edit?id=<?=$value->id?>"><i class="fal fa-edit"></i></a>
-                        <a  style="cursor: pointer" data-id="<?=$value->id ?>" class="remove_loaitin" ><i class="fal fa-trash-alt"></i></a>
+                        <a  onclick="confirm('Bạn có chắc muốn xóa?')" href="loai-tin/del?id=<?=$value->id?> "><i class="fal fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <?php
@@ -38,22 +38,3 @@
         </tbody>
     </table>
 </div>
-<script>
-    $('.remove_loaitin').click(function(){
-         const cfrm = confirm('Bạn có chắc chắn muốn xóa ?');
-        var id = $(this).data('id');
-        if(cfrm ==true){
-            $.ajax({
-                url : "loai-tin/del",
-                method :"GET",
-                data:{
-                    id :id 
-                },
-                success:function(data){
-                    $('#remove'+id).remove();
-                }
-
-            })
-        }
-    });
-</script>

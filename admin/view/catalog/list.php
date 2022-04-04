@@ -1,12 +1,5 @@
 <?php
-	#Get list
-    $fields = [];
-    $sorts = [];
-    $limits = [];
-    $condition = [];
-    $forms = [];
-    $search = [];
-    $data = $query->DanhSach("catalog", $fields, $condition, $sorts, $limits, $forms, $search);
+    $data = $query->DanhSach("catalog");
 ?>
 <div class="blog medium">
 
@@ -37,7 +30,7 @@
                     <td class="can-giua"><img src="../uploads/catalog/<?=$val->hinh?>" height="40"/></td>
                     <td class="can-giua">
                        <a href="catalog/edit?id=<?=$val->id?>"><i class="fas fa-pencil"></i></a>
-                        <a data-id ="<?=$val->id?>" style="cursor: pointer;" class="remove_catalog" ><i class="fal fa-trash-alt"></i></a>
+                        <a onclick="confirm('Bạn có chắc muốn xóa?')" href="catalog/del?id=<?=$val->id?>" ><i class="fal fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <?php
@@ -47,22 +40,3 @@
         </tbody>
     </table>
 </div>
-<script>
-    $('.remove_catalog').click(function(){
-        const cfrm = confirm('Bạn có chắc chắn muốn xóa ?');
-        var id = $(this).data('id');
-        if(cfrm ==true){
-            $.ajax({
-                url : "catalog/del",
-                method :"GET",
-                data:{
-                    id :id 
-                },
-                success:function(data){
-                    $('#remove'+id).remove();
-                }
-
-            })
-        }
-    });
-</script>

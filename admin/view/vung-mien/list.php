@@ -1,18 +1,11 @@
 <?php
-	#Get list
-    $fields = [];
-    $sorts = [];
-    $limits = [];
-    $condition = [];
-    $forms = [];
-    $search = [];
-    $data = $query->DanhSach("vungmien", $fields, $condition, $sorts, $limits, $forms, $search);
+    $data = $query->DanhSach("vungmien");
 ?>
 <div class="blog small">
 
 	<div class="bread">
 		<h1>Vùng miền <span>| danh sách</span></h1>
-		<div class="button"><button><a href="vung-mien/add">Thêm mới</a></button></div>
+		<div class="button"><button><a href="vung-mien/adD">Thêm mới</a></button></div>
 		<div class="clear"></div>
 	</div>
 
@@ -35,7 +28,7 @@
                     <td><p style="text-align: center"><?=$val->ten?></p></td>
                     <td class="can-giua">
                         <a href="vung-mien/edit?id=<?=$val->id?>"><i class="fal fa-edit"></i></a>
-                        <a data-id ="<?=$val->id?>" class="remove_vm" style="cursor: pointer;"><i class="fal fa-trash-alt"></i></a>
+                        <a onclick="confirm('Bạn có chắc muốn xóa?')" href="vung-mien/del?id=<?=$val->id?>"><i class="fal fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <?php
@@ -45,22 +38,3 @@
         </tbody>
     </table>
 </div>
-<script>
-    $('.remove_vm').click(function(){
-        const cfrm = confirm('Bạn có chắc chắn muốn xóa ?');
-        var id = $(this).data('id');
-        if(cfrm ==true){
-            $.ajax({
-                url : "vung-mien/del",
-                method :"GET",
-                data:{
-                    id :id 
-                },
-                success:function(data){
-                    $('#remove'+id).remove();
-                }
-
-            })
-        }
-    });
-</script>

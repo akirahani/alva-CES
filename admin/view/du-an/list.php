@@ -37,7 +37,7 @@
                     <td class="can-giua"><img src="../uploads/du-an/<?=$val->vuong?>" height="40"/></td>
                     <td class="can-giua">
                         <a href="du-an/edit?id=<?=$val->id?>"><i class="fal fa-edit"></i></a>
-                        <a  style="cursor: pointer" data-id="<?=$val->id ?>" class="remove_du_an"><i class="fal fa-trash-alt"></i></a>
+                        <a onclick="confirm('Bạn có chắc muốn xóa?')" href="du-an/del?id=<?=$val->id?>"><i class="fal fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <?php
@@ -47,22 +47,3 @@
         </tbody>
     </table>
 </div>
-<script>
-    $('.remove_du_an').click(function(){
-         const cfrm = confirm('Bạn có chắc chắn muốn xóa ?');
-        var id = $(this).data('id');
-        if(cfrm ==true){
-            $.ajax({
-                url : "du-an/del",
-                method :"GET",
-                data:{
-                    id :id 
-                },
-                success:function(data){
-                    $('#remove'+id).remove();
-                }
-
-            })
-        }
-    });
-</script>

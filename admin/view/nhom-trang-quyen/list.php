@@ -1,9 +1,7 @@
 <?php
-    // require_once "model/Nhom.php";
-    // $nhom = new Nhom();
-    
+    require_once "model/Query.php";
+    $query = new Query();
     $data_nhom = $query->DanhSach('nhom');
-    // $table_name = "";
 ?>
 <div class="row medium">
 
@@ -32,7 +30,7 @@
 <script>
     $(".change-nhom").change(function(){
         let nhom = $(this).val();
-        $(".loading").show();
+        // $(".loading").show();
         $.ajax({
             method: "POST",
             data: {nhom:nhom},
@@ -40,7 +38,7 @@
             success:function(dulieu)
             {
                 $(".list-table").html(dulieu);
-                $(".loading").hide();
+                // $(".loading").hide();
             }
         });
     });

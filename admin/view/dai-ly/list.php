@@ -11,7 +11,7 @@
 
 	<div class="bread">
 		<h1>Đại lý <span>| danh sách</span></h1>
-		<div class="button"><button><a href="dai-ly/add">Thêm mới</a></button></div>
+		<div class="button"><button><a href="dai-ly/adD">Thêm mới</a></button></div>
 		<div class="clear"></div>
 	</div>
 
@@ -30,13 +30,13 @@
             foreach ($data as $key => $val) 
             { 
                 ?>
-                <tr id="remove<?=$val->id?>">
+                <tr>
                     <td class="can-giua"><?=$thutu?></td>
                     <td class="can-giua"><?=$val->ten?></td>
                     <td class="can-giua"><?=$arr_tinhthanh[$val->tinhthanh]?></td>
                     <td class="can-giua">
                         <a href="dai-ly/edit?id=<?=$val->id?>"><i class="fal fa-edit"></i></a>
-                        <a data-id ="<?=$val->id?>" style="cursor: pointer;" class="remove_daily"><i class="fal fa-trash-alt"></i></a>
+                        <a onclick="confirm('Bạn có chắc muốn xóa?')" href="dai-ly/del?id=<?=$val->id?>"><i class="fal fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <?php
@@ -47,22 +47,3 @@
     </table>
 	<div class="clear"></div>
 </div>
-<script>
-    $('.remove_daily').click(function(){
-        const cfrm = confirm('Bạn có chắc chắn muốn xóa ?');
-        var id = $(this).data('id');
-        if(cfrm ==true){
-            $.ajax({
-                url : "dai-ly/del",
-                method :"GET",
-                data:{
-                    id :id 
-                },
-                success:function(data){
-                    $('#remove'+id).remove();
-                }
-
-            })
-        }
-    });
-</script>

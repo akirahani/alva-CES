@@ -1,57 +1,10 @@
 <?php
 	isset($_GET['id']) ? $id = $_GET['id'] : $id = 0;
-	
-	#Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $id];
-    $data_detail = $query->ChiTiet("banner", $fields, $operator, $condition);
-
+    $data_detail = $query->ChiTiet("banner",[],["id" => "="], ["id" => $id]);
 	if(isset($_POST['update']))
 	{
-		if(!empty($_FILES['mobile']['name']))
-		{
-			$mobile = date('Y-m-d-H-i-s-').$_FILES['mobile']['name'];
-			move_uploaded_file($_FILES['mobile']['tmp_name'], '../uploads/banner/'.$mobile);
-			unlink('../uploads/banner/'.$data_detail->mobile);
-		}
-		else
-		{
-			$mobile = $data_detail->mobile;;
-		}
-
-		if(!empty($_FILES['file']['name']))
-		{
-			$pic = date('Y-m-d-H-i-s-').$_FILES['file']['name'];
-			move_uploaded_file($_FILES['file']['tmp_name'], '../uploads/banner/'.$pic);
-			unlink('../uploads/banner/'.$data_detail->desktop);
-		}
-		else
-		{
-			$pic = $data_detail->desktop;
-		}
-
-		$fields = ["ten", "link", "thutu", "mobile", "desktop"];
-        $condition = ["id"];
-        $post_form = [
-			"ten" => $_POST['ten'],
-			"link" => $_POST['link'],
-			"thutu" => $_POST['thutu'],
-			"mobile" => $mobile,
-			"desktop" => $pic,
-            "id" => $id
-        ];
-        $query->CapNhat("banner",$fields, $condition, $post_form);
-        #Xử lý banner
-		$data_list = $query->DanhSach("banner", [], [], ["thutu" => "ASC"], [], []);
-		$fields = ["banner"];
-        $condition = ["id"];
-        $post_form = [
-			"banner" => json_encode($data_list),
-            "id" => 1
-        ];
-        // $query->CapNhat("company", $fields, $condition, $post_form);
-		header("location:list");
+		$banner = New Banner();
+		$banner->CapNhat($query,$id,$data_detail);
 	}
 ?>
 <div class="blog small">
@@ -97,49 +50,4 @@
 		<input type="submit" name="update" value="Update" />
 	</form>
 </div>
- <script>
-        function readURL(input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function(e) {
-            $('#blah').attr('src', e.target.result);
-          }
-          reader.readAsDataURL(input.files[0]); // convert to base64 string
-        }
-      }
-	      $("#mobile").change(function() {
-	        readURL(this);
-	      });
-	          $("#desktop").change(function() {
-	        readURL(this);
-	      });
-	      $(function() {
-	        // Multiple images preview in browser
-	        var imagesPreview = function(input, placeToInsertImagePreview) {
-
-	            if (input.files) {
-	                var filesAmount = input.files.length;
-
-	                for (i = 0; i < filesAmount; i++) {
-	                    var reader = new FileReader();
-
-	                    reader.onload = function(event) {
-	                        $($.parseHTML('<img  class="img-display" style=" width:10%; padding:10px">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-	                    }
-
-	                    reader.readAsDataURL(input.files[i]);
-	                }
-	            }
-
-	        };
-
-	        $('#mobile').change(function(){
-	            imagesPreview(this,'div.mobile');
-	        });
-	        $('#desktop').change(function(){
-	            imagesPreview(this,'div.desktop');
-	        });
-	    });
-
-
-    </script>
+<script type="text/javascript" src="view/banner/add.js"></script>

@@ -1,34 +1,10 @@
 <?php 
+	if(isset($_POST['insert']))
+        { $banner = new Banner();
+          $banner->ThemMoi($query);
+        }
 
-		if(isset($_POST['insert']))
-		{
-			if(!empty($_FILES['mobile']['name']))
-			{
-				$mobile = date('Y-m-d-H-i-s-').$_FILES['mobile']['name'];
-				move_uploaded_file($_FILES['mobile']['tmp_name'], '../uploads/banner/'.$mobile);
-			}
-			else
-			{
-				$mobile = NULL;
-			}
-
-			if(!empty($_FILES['file']['name']))
-			{
-				$pic = date('Y-m-d-H-i-s-').$_FILES['file']['name'];
-				move_uploaded_file($_FILES['file']['tmp_name'], '../uploads/banner/'.$pic);
-			}
-			else
-			{
-				$pic = NULL;
-			}
-			
-	        $query->ThemMoi("banner", ["ten","link","thutu","mobile","desktop"],["ten"=>$_POST['ten'],"link"=>$_POST['link'],"thutu"=>$_POST['thutu'],"mobile"=>$mobile,"desktop"=>$pic]);
-			header("location:list");
-		} 
-
- ?>
-
-
+?>
 <div class="blog small">
 	<div class="bread">
 		<h1>Banner <span>| thêm mới</span></h1>
@@ -64,6 +40,5 @@
 		<p class="tit-label"></p>
 		<input type="submit" name="insert" value="Thêm mới" />
 	</form>
-
-  <script type="text/javascript" src="add.js"></script>
+<script type="text/javascript" src="view/banner/add.js"></script>
 </div>

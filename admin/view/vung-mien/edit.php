@@ -1,23 +1,9 @@
 <?php
 	isset($_GET['id']) ? $id = $_GET['id'] : $id = 0;
-	#Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $id];
-    $data_detail = $query->ChiTiet("vungmien", $fields, $operator, $condition);
+    $data_detail = $query->ChiTiet("vungmien",[], ["id" => "="],["id" => $id]);
 
-	if(isset($_POST['update']))
-	{
-        $fields = ["ten", "slug"];
-        $condition = ["id"];
-        $post_form = [
-			"ten" => $_POST['ten'],
-			"slug" => $_POST['slug'],
-            "id" => $id
-        ];
-        $query->CapNhat("vungmien", $fields, $condition, $post_form);
-        header("location:list");
-	}
+	$vungmien = new VungMien();
+	$vungmien->CapNhat($query,$id,$data_detail);
 ?>
 <div class="blog small">
 

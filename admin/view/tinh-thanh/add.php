@@ -1,15 +1,7 @@
 <?php
 	$data= $query->DanhSach("vungmien", [], [], [], [], [], []);
-	if(isset($_POST['insert']))
-	{
-        $fields = ["ten", "vungmien"];
-		$post_form = [
-			"ten" => $_POST['ten'],
-			"vungmien" => $_POST['vungmien']
-		];
-		$query->ThemMoi("tinhthanh", $fields, $post_form);
-        header("location:list");
-	}
+	$tinhthanh = new TinhThanh();
+	$tinhthanh->ThemMoi($query);
 ?>
 <div class="blog small">
 

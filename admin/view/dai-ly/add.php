@@ -1,37 +1,7 @@
 <?php
-	if(isset($_POST['insert']))
-	{
-        if(!empty($_FILES['album']['tmp_name'][0]))
-        {
-            $arr_album=[];
-            foreach($_FILES['album']['tmp_name'] as $key => $tmp_name)
-            {
-                $album_ten=date('Y-m-d-H-i-s').$lib->changeTitle($_FILES['album']['name'][$key]); 
-                array_push($arr_album, $album_ten);      
-                move_uploaded_file($_FILES['album']['tmp_name'][$key], "../uploads/dai-ly/".$album_ten);
-            }
-            $save_album = implode(",", $arr_album);
-        }
-        else
-        {
-            $save_album = NULL;
-        }
-        $fields = [	"ten", "diachi", "dienthoai", "hethong", "tinhthanh", "slug", "map", "gioithieu", "album" ];
-		$post_form = [
-			"ten" => $_POST['ten'],
-        	"diachi" => $_POST['diachi'],
-        	"dienthoai" => $_POST['dienthoai'],
-        	"hethong" => $_POST['hethong'],
-        	"tinhthanh" => $_POST['tinhthanh'],
-        	"slug" => $_POST['slug'],
-        	"map" => $_POST['map'],
-        	"gioithieu" => $_POST['gioithieu'],
-        	"album" => $save_album
-		];
-		$query->ThemMoi("daily", $fields, $post_form);
-        header("location:list");
-	}
 	$data_tinhthanh = $query->DanhSach("tinhthanh", [], [], [], [], [], []);
+	$daily = new DaiLy();
+	$daily->ThemMoi($query,$lib);
 ?>
 <div class="blog medium">
 
@@ -85,42 +55,4 @@
 		<input type="submit" name="insert" value="Thêm mới" />
 	</form>
 </div>
-  <script>
-	      // desktop
-	function readURL(input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function(e) {
-            $('#blah').attr('src', e.target.result);
-          }
-          reader.readAsDataURL(input.files[0]); // convert to base64 string
-        }
-      }
-	      $("#file").change(function() {
-	        readURL(this);
-	      });
-	      $(function() {
-	        // Multiple images preview in browser
-	        var imagesPreview = function(input, placeToInsertImagePreview) {
-
-	            if (input.files) {
-	                var filesAmount = input.files.length;
-
-	                for (i = 0; i < filesAmount; i++) {
-	                    var reader = new FileReader();
-
-	                    reader.onload = function(event) {
-	                        $($.parseHTML('<img  class="img-display" style=" width:10%; padding:10px">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-	                    }
-
-	                    reader.readAsDataURL(input.files[i]);
-	                }
-	            }
-
-	        };
-
-	        $('#file').change(function(){
-	            imagesPreview(this,'div.file');
-	        });
-	    });
-    </script>
+<script src="view/dai-ly/daily.js"></script>

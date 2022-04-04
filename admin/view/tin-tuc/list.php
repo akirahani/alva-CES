@@ -1,12 +1,5 @@
 <?php 
-	#Get list
-	$fields = ["id", "ten", "vuong"];
-	$sorts = ["id" => "DESC"];
-	$limits = [];
-	$condition = [];
-	$forms = [];
-    $search = [];
-	$data_list = $query->DanhSach("tintuc", $fields, $condition, $sorts, $limits, $forms, $search);
+	$data_list = $query->DanhSach("tintuc",  ["id", "ten", "vuong"], [],["id" => "DESC"],[],[], []);
 
 	#Phân trang
     $total_row = count($data_list);
@@ -68,7 +61,7 @@
 			            <td class="can-giua"><img src="../uploads/tin-tuc/<?=$value->vuong?>" height=30 /></td>
 			            <td class="can-giua">
 			            	<a href="tin-tuc/edit?id=<?=$value->id?>"><i class="fas fa-pencil"></i></a>
-	                    	<a style="cursor: pointer" data-id="<?=$value->id ?>" class="remove_tin" ><i class="fal fa-trash-alt"></i></a>
+	                    	<a  onclick="confirm('Bạn có chắc muốn xóa?')" href="loai-tin/del?id=<?=$value->id?> " ><i class="fal fa-trash-alt"></i></a>
 	                    </td>
 			        </tr>
 				<?php
@@ -90,22 +83,3 @@
 	}
 	?>
 </div>
-<script>
-    $('.remove_tin').click(function(){
-         const cfrm = confirm('Bạn có chắc chắn muốn xóa ?');
-        var id = $(this).data('id');
-        if(cfrm ==true){
-            $.ajax({
-                url : "tin-tuc/del",
-                method :"GET",
-                data:{
-                    id :id 
-                },
-                success:function(data){
-                    $('#remove'+id).remove();
-                }
-
-            })
-        }
-    });
-</script>

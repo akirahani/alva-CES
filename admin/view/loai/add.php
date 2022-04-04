@@ -3,22 +3,8 @@
 
 	if(isset($_POST['insert']))
 	{
-		if(!empty($_POST['danhmuc']))
-		{
-			$str = implode(",", $_POST['danhmuc']);
-		}
-		else
-		{
-			$str = NULL;
-		}
-        $fields = ["ten", "slug", "danhmuc"];
-		$post_form = [
-			"ten" => $_POST['ten'],
-        	"slug" => $_POST['slug'],
-        	"danhmuc" => $str
-		];
-		$query->ThemMoi("loai", $fields, $post_form);
-        header("location:list");
+       $danhmuc = new Loai();
+       $danhmuc->ThemMoi($query);
 	}
 ?>
 <div class="blog small">

@@ -1,27 +1,13 @@
 <?php
 	isset($_GET['id']) ? $id = $_GET['id'] : $id = 0;
-	#Detail
-    $fields = [];
-    $operator = ["id" => "="];
-    $condition = ["id" => $id];
-    $data_thongso = $query->ChiTiet("thongso", $fields, $operator, $condition);
-
+    $data_thongso = $query->ChiTiet("thongso", [],  ["id" => "="],["id" => $id]);
 	$data_danhmuc = $query->DanhSach("danhmuc", [], [], [], [], [], []);
 	$data_loai = $query->DanhSach("loai", [], [], [], [], [], []);
 
 	if(isset($_POST['edit']))
 	{
-        $fields = ["ten", "danhmuc", "loai", "thutu"];
-        $condition = ["id"];
-        $post_form = [
-			"ten" => $_POST['ten'],
-        	"danhmuc" => $_POST['danhmuc'],
-        	"loai" => $_POST['loai'],
-        	"thutu" => $_POST['thutu'],
-            "id" => $id
-        ];
-        $query->CapNhat("thongso", $fields, $condition, $post_form);
-        header("location:list");
+        $thongso = new ThongSo();
+		$thongso->CapNhat($query,$id);
 	}
 ?>
 <div class="blog small">
@@ -80,17 +66,4 @@
 		<input type="submit" name="edit" class="submit" value="Cập nhật"/>
 	</form>
 </div>
-<script>
-	$('select[name="danhmuc"]').change(function(){
-		let danhmuc = $(this).val();
-		$.ajax({
-			method: "POST",
-			data: {danhmuc:danhmuc, loai:loai},
-			url: "view/thong-so/loai-danh-muc.php",
-			success: function(data)
-			{
-				$('select[name="loai"]').html(data);
-			}
-		});
-	});
-</script>
+<script src="view/da/da_edit.js"></script>
