@@ -37,9 +37,13 @@
 		<p class="tit-label">Tên không dấu</p>
 		<input type="text" name="slug" required spellcheck="false" autocomplete="off" class="input-text" />
 
-		<p class="tit-label">Hình ảnh</p>
-		<input type="file" name="file" /> 500 x 500 px
-
+		<p class="tit-label">Hình ảnh</p>500 x 500 px
+		<div class ="desktop" required  style="border: 2px dashed #0087F7; border-radius:5px;">
+            <img class="img-display">
+        </div>
+        <label for="desktop" class="btn btn-info mt-2" style="cursor: pointer;"> <i class="fas fa-upload"></i>Chọn ảnh
+            <input type='file' id="desktop" name="file"   accept="image/*"  class="mb-2" multiple hidden required/>
+        </label> 
 		<p class="tit-label">Mô tả</p>
 		<textarea rows="5" spellcheck="false" name="mota" class="ckeditor"></textarea>
 
@@ -50,3 +54,4 @@
 		<input type="submit" name="add" value="Thêm mới" />
 	</form>
 </div>
+<script type="text/javascript" src="view/tuyen-dung/tuyendung.js"></script>

@@ -11,7 +11,7 @@
 			];
 			$query->ThemMoi("danhmuc", $fields, $post_form);
 	        // Xử lý danh mục
-	        $this->load->XuLiDanhMuc($query);
+	        $this->XuLiDanhMuc($query);
 	        header("location:list");
 		}
 		// 

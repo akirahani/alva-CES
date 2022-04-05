@@ -46,8 +46,13 @@
 			?>
 		</select>
 
-		<p class="tit-label">Hình vuông</p>
-		<input type="file" name="vuong" /> 500 x 359
+		<p class="tit-label">Hình vuông</p>500 x 359
+		<div class ="mobile" required  style="border: 2px dashed #0087F7; border-radius:5px;">
+            <img class="img-display">
+        </div>
+        <label for="mobile" class="btn btn-info mt-2" style="cursor: pointer;"> <i class="fas fa-upload"></i>Chọn ảnh
+            <input type='file' id="mobile" name="vuong"   accept="image/*"  class="mb-2" multiple hidden required/>
+        </label>
 		<?php
 		if($data_detail->vuong != NULL)
 		{
@@ -55,8 +60,13 @@
 		}
 		?>
 		
-		<p class="tit-label">Hình dài</p>
-		<input type="file" name="dai" /> 600 x 214px
+		<p class="tit-label">Hình dài</p> 600 x 214px
+		<div class ="desktop" required  style="border: 2px dashed #0087F7; border-radius:5px;">
+            <img class="img-display">
+        </div>
+        <label for="desktop" class="btn btn-info mt-2" style="cursor: pointer;"> <i class="fas fa-upload"></i>Chọn ảnh
+            <input type='file' id="desktop" name="dai"   accept="image/*"  class="mb-2" multiple hidden required/>
+        </label> 
 		<?php
 		if($data_detail->dai != NULL)
 		{
@@ -92,3 +102,4 @@
 		<input type="submit" name="edit" value="Cập nhật" />
 	</form>
 </div>
+<script type="text/javascript" src="view/tin-tuc/tin.js"></script>

@@ -23,8 +23,8 @@
 		<select name="danhmuc">
 			<option value="0">Chọn</option>
 			<?php 
-			foreach ($data_danhmuc as $key => $val) {
-				echo '<option value="'.$val->id.'">'.$val->ten.'</option>';
+			foreach ($data_danhmuc as $key => $value) {
+				echo '<option value="'.$value->id.'">'.$value->ten.'</option>';
 			}
 			?>
 		</select>

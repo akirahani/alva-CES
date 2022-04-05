@@ -20,7 +20,7 @@
 				header("location:list");
 		}
 
-		function CapNhat($query,$id,$data_detail)
+		function CapNhat($query,$id,$data_detail,$lib)
 		{
 			 if(!empty($_FILES['file']['name']))
 		        {  

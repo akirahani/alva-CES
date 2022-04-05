@@ -5,7 +5,7 @@
 	if(isset($_POST['edit']))
 	{
        $catalog = new Catalog();
-       $catalog->CapNhat($query,$id,$data_detail);
+       $catalog->CapNhat($query,$id,$data_detail,$lib);
 	}
 ?>
 <div class="blog small">

@@ -41,7 +41,7 @@
         </label> 
 
 		<p class="tit-label">Giới thiệu</p>
-		<textarea rows="5" spellcheck="false" name="gioithieu" class="ckeditor"></textarea>
+		<textarea rows="5" spellcheck="false" name="gioithieu" id="gioithieu" class="ckeditor"></textarea>
 
 		<p class="tit-label">Nội dung</p>
 		<textarea rows="5" spellcheck="false" name="noidung" class="ckeditor"></textarea>
@@ -54,4 +54,11 @@
 		<input type="submit" name="insert" value="Thêm mới" />
 	</form>
 </div>
+<script type="text/javascript">
+	CKEDITOR.replace('gioithieu',{
+		filebrowserUploadUrl: "view/du-an/add.php",
+		filebrowserUploadMethod: 'form',
+	});
+
+</script>
 <script type="text/javascript" src="view/du-an/du-an.js"></script>

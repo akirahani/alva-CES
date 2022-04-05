@@ -26,7 +26,7 @@ $config = array();
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_authentication
 
 $config['authentication'] = function () {
-    if(isset($_SESSION['spaid']))
+    if(isset($_SESSION['id']))
     {
         return true;
     }
@@ -39,8 +39,8 @@ $config['authentication'] = function () {
 /*============================ License Key ============================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
-$config['licenseName'] = 'dienphuc.vn';
-$config['licenseKey']  = '9XCXTWJ85ARMA6U5VM32PBXL8KMLG';
+// $config['licenseName'] = 'dienphuc.vn';
+// $config['licenseKey']  = '9XCXTWJ85ARMA6U5VM32PBXL8KMLG';
 // $config['licenseName'] = '';
 // $config['licenseKey']  = '';
 /*============================ CKFinder Internal Directory ============================*/
@@ -75,7 +75,7 @@ $config['backends'][] = array(
     'name'         => 'default',
     'adapter'      => 'local',
     //'baseUrl'      => '/uploads/',//host
-    'baseUrl'      => 'dienphuc/uploads/',//localhost
+    'baseUrl'      => '/alvaCES/uploads/',//localhost
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,
     'filesystemEncoding' => 'UTF-8',

@@ -49,7 +49,7 @@
 					require_once "controller/".$p.".php";
 					$ps = $p;
 					$path = 'view/'.$p.'/list.php';
-					$phanquyen->	quyen_xem($ps,$__NHOM__,$query);
+					$phanquyen->quyen_xem($ps,$__NHOM__,$query);
 				}
 				else{
 					require_once "controller/".$p.".php";

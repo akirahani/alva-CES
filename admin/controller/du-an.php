@@ -40,6 +40,32 @@
 	        {
 	            $save_album = NULL;
 	        }
+	       	// Thêm ảnh
+	       	 if(isset($_FILES['upload'])) {
+            //get filename with extension
+	            $filenamewithextension = $_FILES['upload']->getClientOriginalName();
+
+	            //get filename without extension
+	            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+
+	            //get file extension
+	            $extension = $_FILES['upload']->getClientOriginalExtension();
+
+	            //filename to store
+	            $filenametostore = $filename.'_'.time().'.'.$extension;
+
+	            //Upload File
+	            $_FILES['upload']->move_uploaded_file('../uploads/du-an/', $filenametostore);
+
+	            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
+	            $url = asset('view/du-an/add.php'.$filenametostore);
+	            $msg = 'Image successfully uploaded';
+	            $re = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
+
+	            // Render HTML output
+	            @header('Content-type: text/html; charset=utf-8');
+	            echo $re;
+	        }    
 	        $fields = [	"ten", "vuong", "dai", "album", "gioithieu", "noidung", "loai" ];
 	        $post_form=[
 	        	"ten" => $_POST['ten'],

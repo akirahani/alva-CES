@@ -11,6 +11,9 @@
 					<i class="fa fa-chevron-down" aria-hidden="true"></i>
 				</div>
 				<div class="blog">
+					<p><a  href="">a</a></p>
+				</div>
+				<div class="blog">
 					<p><a onClick="return confirm('Bạn chắc chắn muốn thoát?')" href="logout.php">Thoát</a></p>
 				</div>
 			</li>

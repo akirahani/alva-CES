@@ -52,8 +52,13 @@
             <p class="tit-label">Hình vuông</p>
         </div>
 
-        <p class="tit-label">Album</p>
-        <input type="file" name="album[]" multiple /> 800 x 800 px
+        <p class="tit-label">Album</p>800 x 800 px
+        <div class ="vuong" required  style="border: 2px dashed #0087F7; border-radius:5px;">
+            <img class="img-display">
+        </div>
+        <label for="vuong" class="btn btn-info mt-2" style="cursor: pointer;"> <i class="fas fa-upload"></i>Chọn ảnh
+            <input type='file' id="vuong" name="album[]"   accept="image/*"  class="mb-2" multiple hidden required/>
+        </label>
         
         <?php 
         foreach ($data_loai as $key => $value) 

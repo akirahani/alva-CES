@@ -83,7 +83,7 @@
         if($data_da_chitiet->album != NULL)
         {
             foreach ($arr_album_old as $key_p => $value_p) {
-                echo '<img src="../uploads/van-da/'.$value_p.'" height="100" />';
+                echo '<p style="display: inline-flex ;padding: 5px;"><img src="../uploads/van-da/'.$value_p.'" height="100" />';
             }
         }
         ?>
